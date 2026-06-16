@@ -317,7 +317,7 @@ const DATA = {
       {nm:"Em contato (prospecção)", n:116, color:"var(--ink4)"}
     ],
     indicadores: [
-      {nm:"Rafaela Bock", esp:"Med. Família", prescritos:3, aceitos:2},
+      {nm:"Rafaela Bock", esp:"Med. Família", prescritos:4, aceitos:2},
       {nm:"Thayane Guimarães", esp:"Generalista", prescritos:2, aceitos:0},
       {nm:"Denis Noronha", esp:"Generalista", prescritos:1, aceitos:0}
     ],
@@ -432,7 +432,7 @@ const DATA = {
     ],
     ufMedico: [
       {nm:"São Paulo (SP)", n:3, color:"var(--g2)"},
-      {nm:"Santa Catarina (SC)", n:3, color:"var(--g3)"},
+      {nm:"Santa Catarina (SC)", n:2, color:"var(--g3)"},
       {nm:"Rio de Janeiro (RJ)", n:2, color:"var(--blue)"},
       {nm:"Bahia (BA)", n:1, color:"var(--amber)"}
     ]
@@ -686,9 +686,9 @@ function viewB2C(state){
     </div></div>
   </div>
   <div class="cols-2" style="margin-top:16px">
-    <div class="panel"><div class="ph"><div><h3>🗺️ Estado dos pacientes</h3><div class="ph-sub">UF de quem comprou</div></div></div>
+    <div class="panel"><div class="ph"><div><h3>🗺️ Estado dos pacientes</h3><div class="ph-sub">UF dos ${b.pacientesUnicos} pacientes únicos</div></div></div>
       <div class="pb">${pieBlock(b.ufPaciente,"PACIENTES")}</div></div>
-    <div class="panel"><div class="ph"><div><h3>🗺️ Estado dos médicos</h3><div class="ph-sub">UF do prescritor</div></div></div>
+    <div class="panel"><div class="ph"><div><h3>🗺️ Estado dos médicos</h3><div class="ph-sub">UF dos ${b.medicosUnicos} médicos únicos</div></div></div>
       <div class="pb">${pieBlock(b.ufMedico,"MÉDICOS")}</div></div>
   </div>`;
 }
