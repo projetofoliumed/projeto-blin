@@ -23,7 +23,6 @@
   --sh-h:0 8px 28px rgba(11,32,24,.13);
 }
 body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;-webkit-font-smoothing:antialiased;line-height:1.45}
-.mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 
 /* HEADER */
 .header{background:radial-gradient(120% 160% at 0% 0%,#1C5036 0%,var(--g0) 70%);color:#fff;padding:22px 30px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;position:relative;overflow:hidden}
@@ -89,8 +88,8 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .hero.feat *{color:#fff}
 .hero-lbl{font-size:10.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:6px}
 .hero.feat .hero-lbl{color:rgba(255,255,255,.6)}
-.hero-val{font-size:36px;font-weight:800;line-height:1;margin:10px 0 4px;letter-spacing:-1.5px}
-.hero-val.sm{font-size:27px;letter-spacing:-1px}
+.hero-val{font-size:34px;font-weight:800;line-height:1;margin:10px 0 4px;letter-spacing:-1.5px}
+.hero-val.sm{font-size:25px;letter-spacing:-1px}
 .hero-sub{font-size:11.5px;color:var(--ink3)}
 .hero.feat .hero-sub{color:rgba(255,255,255,.55)}
 .hero-spark{position:absolute;right:14px;bottom:14px;width:70px;height:32px;opacity:.9}
@@ -100,11 +99,10 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 
 /* PANELS */
 .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .cols-12{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:820px){.cols-2,.cols-3,.cols-12{grid-template-columns:1fr}}
-.cols-2>.panel,.cols-3>.panel,.cols-12>.panel{display:flex;flex-direction:column}
-.cols-2>.panel>.pb,.cols-3>.panel>.pb,.cols-12>.panel>.pb{flex:1;display:flex;flex-direction:column}
+@media(max-width:820px){.cols-2,.cols-12{grid-template-columns:1fr}}
+.cols-2>.panel,.cols-12>.panel{display:flex;flex-direction:column}
+.cols-2>.panel>.pb,.cols-12>.panel>.pb{flex:1;display:flex;flex-direction:column}
 .cols-2>.panel>.pb>.insight:last-child,.cols-12>.panel>.pb>.insight:last-child{margin-top:auto}
 .panel{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .panel.span{grid-column:1/-1}
@@ -113,23 +111,17 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .ph-sub{font-size:11px;color:var(--ink3);margin-top:1px;font-weight:400}
 .pb{padding:20px}
 
-.section-lbl{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--ink3);margin-bottom:14px;display:flex;align-items:center;gap:9px}
-.section-lbl::after{content:'';flex:1;height:1px;background:var(--border2)}
-
 /* mini metrics */
 .mg{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:20px}
-.mc{border-radius:var(--r-sm);border:1px solid var(--border);padding:14px 15px;transition:border-color .2s,transform .2s}
-.mc:hover{transform:translateY(-2px)}
+.mc{border-radius:var(--r-sm);border:1px solid var(--border);padding:14px 15px}
 .mc.acc{background:var(--g-soft);border-color:var(--g-mid)}
-.mc.warn{background:var(--red-light);border-color:var(--red-mid)}
-.mc.pend{background:var(--amber-light);border-color:var(--amber-mid)}
 .mc.viol{background:var(--violet-light);border-color:#D9D2F7}
 .mc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink3)}
-.mc-val{font-size:27px;font-weight:800;line-height:1;margin:7px 0 3px;letter-spacing:-1px}
-.mc-val.g{color:var(--g2)}.mc-val.r{color:var(--red)}.mc-val.a{color:var(--amber)}.mc-val.v{color:var(--violet)}
+.mc-val{font-size:25px;font-weight:800;line-height:1;margin:7px 0 3px;letter-spacing:-1px}
+.mc-val.v{color:var(--violet)}
 .mc-sub{font-size:11px;color:var(--ink3)}
 
-/* PROPORTIONAL FUNNEL — labels OUTSIDE bars, dark text */
+/* FUNNEL */
 .funnel3{display:flex;flex-direction:column;gap:3px;margin:6px 0}
 .fs-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
 .fs-lbl{font-size:12.5px;font-weight:700;color:var(--ink2)}
@@ -152,7 +144,7 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .cr.bad .cr-v{color:var(--red)}
 .cr-l{font-size:10.5px;color:var(--ink3);margin-top:3px;font-weight:600}
 
-/* INSIGHT CARD */
+/* INSIGHT */
 .insight{display:flex;gap:13px;background:linear-gradient(120deg,var(--g-soft),#fff);border:1px solid var(--g-mid);border-left:4px solid var(--g3);border-radius:var(--r-sm);padding:14px 16px;margin-top:16px}
 .insight.warn{background:linear-gradient(120deg,var(--amber-light),#fff);border-color:var(--amber-mid);border-left-color:var(--amber)}
 .insight.viol{background:linear-gradient(120deg,var(--violet-light),#fff);border-color:#D9D2F7;border-left-color:var(--violet)}
@@ -173,39 +165,38 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .list-body{display:none;margin-top:11px}
 .list-hd.open + .list-body{display:block}
 .li{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:8px;margin-bottom:5px;font-size:12px}
-.li.red{background:var(--red-light)}.li.amber{background:var(--amber-light)}.li.muted{background:var(--bg)}
+.li.red{background:var(--red-light)}.li.amber{background:var(--amber-light)}
 .li .nm{font-weight:600;color:var(--ink2);flex:1}
 .li .rs{font-size:11px;font-style:italic}
-.li.red .rs{color:var(--red)}.li.amber .rs{color:var(--amber);font-style:normal;font-weight:600}.li.muted .nm{color:var(--ink3);font-weight:500}
+.li.red .rs{color:var(--red)}.li.amber .rs{color:var(--amber);font-style:normal;font-weight:600}
 .li .tagx{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;padding:2px 8px;border-radius:6px;background:rgba(0,0,0,.05);color:var(--ink3)}
 
-/* SEGMENT / RANKING bars */
+/* SEGMENT bars */
 .seg{display:flex;flex-direction:column;gap:10px}
 .seg-row{display:flex;align-items:center;gap:11px}
 .seg-rank{font-size:11px;font-weight:800;color:var(--ink4);width:16px;text-align:center;flex-shrink:0}
 .seg-lbl{font-size:11.5px;color:var(--ink2);width:120px;flex-shrink:0;font-weight:600}
 .seg-wrap{flex:1;height:24px;background:var(--bg);border-radius:6px;overflow:hidden}
-.seg-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;transition:width .9s cubic-bezier(.34,1.1,.4,1)}
-.seg-bar span{font-size:11px;font-weight:800;color:#fff}
+.seg-bar{height:100%;border-radius:6px;transition:width .9s cubic-bezier(.34,1.1,.4,1)}
 .seg-n{font-size:12px;color:var(--ink2);width:24px;flex-shrink:0;font-weight:700;text-align:right}
 
-/* DONUT */
+/* DONUT / PIE */
 .donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.legend{display:flex;flex-direction:column;gap:10px;flex:1;min-width:140px}
+.legend{display:flex;flex-direction:column;gap:10px;flex:1;min-width:150px}
 .leg-row{display:flex;align-items:center;gap:10px;font-size:12px}
 .leg-dot{width:11px;height:11px;border-radius:4px;flex-shrink:0}
 .leg-nm{color:var(--ink2);flex:1;font-weight:500}
 .leg-v{font-weight:800;color:var(--ink)}
-.leg-pc{font-size:10.5px;color:var(--ink3);width:34px;text-align:right}
+.leg-pc{font-size:11px;color:var(--g2);width:42px;text-align:right;font-weight:800}
 
 /* REP LEADERBOARD */
-.rep-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-sm);border:1px solid var(--border);margin-bottom:9px;transition:transform .2s}
+.rep-card{display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:var(--r-sm);border:1px solid var(--border);margin-bottom:8px;transition:transform .2s}
 .rep-card:hover{transform:translateX(3px)}
-.rep-av{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+.rep-av{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
 .rep-info{flex:1}
-.rep-nm{font-size:13px;font-weight:700;color:var(--ink)}
-.rep-meta{font-size:11px;color:var(--ink3)}
-.rep-big{font-size:24px;font-weight:800;letter-spacing:-.5px;color:var(--ink)}
+.rep-nm{font-size:12.5px;font-weight:700;color:var(--ink)}
+.rep-meta{font-size:10.5px;color:var(--ink3)}
+.rep-big{font-size:22px;font-weight:800;letter-spacing:-.5px;color:var(--ink)}
 
 /* TIMELINE */
 .timeline{position:relative;padding-left:8px}
@@ -228,17 +219,15 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 /* clinical scales */
 .scale-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(max-width:560px){.scale-grid{grid-template-columns:1fr}}
-.scale-card{border:1px dashed var(--border);border-radius:var(--r-sm);padding:14px;background:var(--g-soft)}
-.scale-card.locked{opacity:.85}
+.scale-card{border:1px dashed var(--border);border-radius:var(--r-sm);padding:14px;background:var(--g-soft);opacity:.85}
 .scale-t{font-size:12px;font-weight:700;color:var(--ink2);display:flex;justify-content:space-between;align-items:center}
 .scale-t .lk{font-size:10px;color:var(--ink4)}
 .scale-bar{height:6px;background:var(--bg);border-radius:4px;margin-top:10px;overflow:hidden}
-.scale-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g3),var(--lime));border-radius:4px}
 .scale-d{font-size:10.5px;color:var(--ink3);margin-top:7px}
 
 /* toggle */
 .toggle{display:inline-flex;background:var(--bg);border-radius:9px;padding:3px;gap:2px}
-.tg{padding:6px 15px;font-size:11.5px;font-weight:700;color:var(--ink3);border:none;background:none;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .15s}
+.tg{padding:6px 13px;font-size:11.5px;font-weight:700;color:var(--ink3);border:none;background:none;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .15s}
 .tg.active{background:var(--surface);color:var(--g2);box-shadow:var(--sh)}
 
 /* B2C month bars */
@@ -248,17 +237,25 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .mbar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:13px;transition:width .9s cubic-bezier(.34,1.1,.4,1)}
 .mbar-fill span{font-size:13px;font-weight:800;color:#fff;white-space:nowrap}
 .prod-list{display:flex;flex-direction:column;gap:13px}
-.prod-row .prod-nm{font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.prod-row .prod-nm{font-size:11.5px;font-weight:700;color:var(--ink2);margin-bottom:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .prod-nm .pv{color:var(--ink3);font-weight:500}
-.prod-bg{height:26px;background:var(--bg);border-radius:6px;overflow:hidden}
+.prod-bg{height:24px;background:var(--bg);border-radius:6px;overflow:hidden}
 .prod-fill{height:100%;background:linear-gradient(90deg,var(--g2),var(--g3));border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:9px}
 .prod-fill span{font-size:10.5px;font-weight:800;color:#fff}
 
-/* empty state */
-.empty{text-align:center;padding:30px 20px;color:var(--ink3)}
-.empty .ico{font-size:30px;margin-bottom:10px;opacity:.55}
-.empty h4{font-size:14px;color:var(--ink2);margin-bottom:5px;font-weight:700}
-.empty p{font-size:12px}
+/* NMV breakdown */
+.nmv-row{display:flex;align-items:stretch;gap:10px;margin-top:4px}
+.nmv-box{flex:1;border-radius:var(--r-sm);padding:14px 15px;border:1px solid var(--border)}
+.nmv-box.gmv{background:var(--g-soft);border-color:var(--g-mid)}
+.nmv-box.desc{background:var(--red-light);border-color:var(--red-mid)}
+.nmv-box.nmv{background:linear-gradient(135deg,var(--g1),var(--g0));border-color:var(--g0)}
+.nmv-box .nl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--ink3)}
+.nmv-box.nmv .nl{color:rgba(255,255,255,.6)}
+.nmv-box .nv{font-size:20px;font-weight:800;letter-spacing:-.7px;margin-top:6px}
+.nmv-box.gmv .nv{color:var(--g2)}.nmv-box.desc .nv{color:var(--red)}.nmv-box.nmv .nv{color:#fff}
+.nmv-box .ns{font-size:10.5px;color:var(--ink3);margin-top:2px}
+.nmv-box.nmv .ns{color:rgba(255,255,255,.55)}
+.nmv-op{display:flex;align-items:center;font-size:18px;font-weight:800;color:var(--ink4)}
 
 /* tooltip */
 .tip{position:relative;cursor:help;border-bottom:1px dotted var(--ink4)}
@@ -267,36 +264,27 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .tip .tt::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--g0)}
 
 .foot{margin-top:28px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.foot .src{font-size:11px;color:var(--ink3);display:flex;flex-direction:column;gap:5px}
-.foot .src .row{display:flex;align-items:center;gap:8px}
+.foot .src{font-size:11px;color:var(--ink3)}
 .foot .live{font-size:10.5px;font-weight:700;color:var(--g2);display:flex;align-items:center;gap:6px}
 .foot .live .d{width:7px;height:7px;border-radius:50%;background:var(--g3);box-shadow:0 0 0 3px var(--g-light);animation:pulse 2s infinite}
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media(max-width:600px){
-  .header{padding:16px 18px}
-  .header h1{font-size:16px}
-  .header .sub{font-size:11px}
-  .tabs{padding:0 14px}
-  .tab{padding:13px 13px;font-size:12.5px}
-  .main{padding:16px 14px 48px}
-  .goals{padding:18px 18px;border-radius:14px}
-  .hero-val{font-size:30px}
-  .hero-val.sm{font-size:24px}
-  .pb{padding:16px}
-  .ph{padding:14px 16px}
-  .page-head h2{font-size:18px}
-  .seg-lbl{width:96px;font-size:11px}
-  .cr{min-width:110px}
+  .header{padding:16px 18px}.header h1{font-size:16px}.header .sub{font-size:11px}
+  .tabs{padding:0 14px}.tab{padding:13px 13px;font-size:12.5px}
+  .main{padding:16px 14px 48px}.goals{padding:18px 18px;border-radius:14px}
+  .hero-val{font-size:28px}.hero-val.sm{font-size:23px}.pb{padding:16px}.ph{padding:14px 16px}
+  .page-head h2{font-size:18px}.seg-lbl{width:96px;font-size:11px}.cr{min-width:110px}
+  .nmv-row{flex-direction:column}.nmv-op{justify-content:center;padding:2px 0}
 }
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-// ===================== DATA (from xlsx, weekly) =====================
+// ===================== DATA (from xlsx, updated 16/06/2026) =====================
 const DATA = {
-  updated: "09/06/2026",
+  updated: "16/06/2026",
   goals: {
     medicos:   {atual: 11, meta: 250,  lbl:"Médicos ativos", icon:"👨‍⚕️"},
     pacientes: {atual: 0,  meta: 750,  lbl:"Pacientes iniciados", icon:"🧑‍🤝‍🧑"},
@@ -304,12 +292,18 @@ const DATA = {
     ratio:     {atual: 0,  meta: 3,    lbl:"Pacientes / médico", icon:"📊"}
   },
   medicos: {
-    convidados: 19, aceitos: 11, declinados: 5, pendentes: 3, lifecycle: 2,
-    fila: 7, comPrescricao: 1, prescricoes: 1,
+    total: 135, convidados: 19, aceitos: 11, declinados: 5, pendentes: 3, lifecycle: 2,
+    fila: 116, comPrescricao: 3, prescricoes: 7, repsTotal: 41,
     funil: [
       {lbl:"Convidados MVP", val:19, color:"var(--g0)"},
       {lbl:"Aceitaram termo", val:11, color:"var(--g2)"},
-      {lbl:"Prescreveram", val:1, color:"var(--g3)"}
+      {lbl:"Prescreveram", val:3, color:"var(--g3)"}
+    ],
+    status: [
+      {nm:"Termo assinado", n:11, color:"var(--g2)"},
+      {nm:"Termo enviado", n:3, color:"var(--amber)"},
+      {nm:"Recusado", n:5, color:"var(--red)"},
+      {nm:"Sem contato (fila)", n:116, color:"var(--ink4)"}
     ],
     aceitosList: [
       {nm:"Ana Paula Camargo", tag:"Reumatologia"},
@@ -333,50 +327,55 @@ const DATA = {
     ],
     pendentesList: [
       {nm:"Luísa Ramos", rs:"termo enviado"},
-      {nm:"Johnatan Felipe", rs:"aguardando dados"},
+      {nm:"Johnatan Felipe", rs:"termo enviado"},
       {nm:"Thiago Duarte", rs:"termo enviado"}
     ],
-    filaList: [
-      {nm:"Fabio Willians Rossi Santana", tag:"Gabriela"},
-      {nm:"Evelyn Esteres Oliveira", tag:"Renata"},
-      {nm:"Lucilia de Brito Tavares", tag:"Renata"},
-      {nm:"Tathiane Karen H. Barbary", tag:"Gabriela"},
-      {nm:"Ana Rachel de Oliveira Vermejo", tag:"Gabriela"},
-      {nm:"Romulo da Costa Torres", tag:"Gabriela"},
-      {nm:"Vitor Nunes Rodrigues da Silva", tag:"Gabriela"}
-    ],
     especialidade: [
-      {nm:"Generalista", n:10},
+      {nm:"Generalista", n:15},
+      {nm:"Med. Família", n:5},
       {nm:"Acupuntura", n:3},
-      {nm:"Med. Família", n:3},
       {nm:"Med. Física/Reab.", n:3},
+      {nm:"Neurologia", n:3},
       {nm:"Geriatria", n:2},
-      {nm:"Neurologia", n:2},
       {nm:"Reumatologia", n:1},
       {nm:"Ortopedia", n:1},
       {nm:"Clínica Médica", n:1}
     ],
-    origem: [
-      {nm:"Interno", n:19, color:"var(--g2)"},
-      {nm:"Rep Gabriela", n:4, color:"var(--violet)"},
-      {nm:"Rep Renata", n:3, color:"var(--blue)"}
-    ],
     reps: [
-      {nm:"Gabriela", indicados:4, av:"G", color:"var(--violet)"},
-      {nm:"Renata", indicados:3, av:"R", color:"var(--blue)"}
+      {nm:"Filipe", indicados:5, av:"F", color:"var(--violet)"},
+      {nm:"Gabriela", indicados:5, av:"G", color:"var(--blue)"},
+      {nm:"Jéssica", indicados:5, av:"J", color:"var(--g3)"},
+      {nm:"Luca", indicados:5, av:"L", color:"var(--amber)"},
+      {nm:"Maysa", indicados:5, av:"M", color:"var(--g2)"},
+      {nm:"Mikaelle", indicados:5, av:"M", color:"var(--violet)"},
+      {nm:"Renata", indicados:5, av:"R", color:"var(--blue)"},
+      {nm:"Danieli", indicados:3, av:"D", color:"var(--ink3)"},
+      {nm:"Gustavo", indicados:3, av:"G", color:"var(--ink3)"}
     ]
   },
   pacientes: {
-    prescricoes: 1, aceitos: 0, iniciados: 0, declinados: 0,
+    prescricoes: 7, aceitos: 2, iniciados: 0, declinados: 0,
+    status: [
+      {nm:"Termo assinado", n:2, color:"var(--g2)"},
+      {nm:"Aguardando termo", n:5, color:"var(--amber)"}
+    ],
     jornada: [
-      {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:1, state:"active"},
-      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:0, state:"todo"},
+      {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:7, state:"done"},
+      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:2, state:"active"},
       {t:"Pedido entregue", d:"Entrega rastreada via Memphis", n:0, state:"todo"},
       {t:"Cuida ativado", d:"1º contato do acompanhamento clínico", n:0, state:"todo"},
       {t:"Check-in D6 / D10", d:"Coleta de dados → RWE gerado", n:0, state:"todo"}
     ],
     aguardando: [
-      {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane Guimarães · 02/06"}
+      {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane · 02/06"},
+      {nm:"Célia Regina de Mello", rs:"Dr. Denis Noronha · 10/06"},
+      {nm:"Ariana Jéssica Lopes Rios", rs:"Dra. Thayane · 13/06"},
+      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · 12/06"},
+      {nm:"Valtrudes Diel", rs:"Dra. Rafaela Bock · 12/06"}
+    ],
+    convertidos: [
+      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · aceite 10/06"},
+      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · aceite 16/06"}
     ],
     escalas: [
       {t:"Dor (0–10)", d:"Δ vs. basal por paciente"},
@@ -386,19 +385,24 @@ const DATA = {
     ]
   },
   b2c: {
-    medicosUnicos: 6, pacientesUnicos: 6, frascos: 11, gmv: 4039,
-    maiorPedido: 2094,
-    mes: { mai: {gmv:1247, frascos:3}, jun: {gmv:2792, frascos:8} },
+    medicosUnicos: 8, pacientesUnicos: 9, frascos: 14, pedidos: 9,
+    gmv: 5686, desconto: 1260, nmv: 4426, maiorPedido: 2094,
+    mes: {
+      mai: {gmv:1247, desconto:45,   nmv:1202, frascos:3},
+      jun: {gmv:4439, desconto:1215, nmv:3224, frascos:11}
+    },
     produtos: [
-      {nm:"Foliumed FS 6000mg · 0,2% (Day)", un:10, gmv:3490},
-      {nm:"Foliumed FS 6000mg · 1% (Night)", un:1, gmv:549}
+      {nm:"Full Spectrum 20% + 0,2% THC (Day)", un:10, nmv:3455},
+      {nm:"Protocolo de Dor — Full Spectrum", un:2, nmv:0},
+      {nm:"Full Spectrum 20:1 · 1% THC (Night)", un:1, nmv:522},
+      {nm:"Full Spectrum 1:1 CBD/THC", un:1, nmv:449}
     ]
   }
 };
 
 // ===================== HELPERS =====================
 const $ = s => document.querySelector(s);
-const brl = n => "R$ "+n.toLocaleString("pt-BR");
+const brl = n => "R$ "+Math.round(n).toLocaleString("pt-BR");
 const pct = (a,b) => b? Math.round(a/b*100) : 0;
 function tip(txt, inner){return `<span class="tip">${inner}<span class="tt">${txt}</span></span>`;}
 
@@ -409,25 +413,30 @@ function spark(pts){
   return `<svg class="hero-spark" viewBox="0 0 ${w} ${h}"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--lime)" stop-opacity=".4"/><stop offset="1" stop-color="var(--lime)" stop-opacity="0"/></linearGradient></defs><path d="${area}" fill="url(#sg)"/><path d="${d}" fill="none" stroke="var(--lime)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }
 
-function donut(segs, size=130){
-  const total=segs.reduce((s,x)=>s+x.n,0);
-  const R=size/2,r=R*0.6,cx=R,cy=R; let a=-Math.PI/2,paths="";
+// STATUS PIE (donut) with center total + legend with %
+function pie(segs, label){
+  const size=150, total=segs.reduce((s,x)=>s+x.n,0);
+  const R=size/2,r=R*0.62,cx=R,cy=R; let a=-Math.PI/2,paths="";
   segs.forEach(s=>{
-    const frac=s.n/total,a2=a+frac*2*Math.PI;
+    let frac=s.n/total; if(frac<=0) return;
+    let a2=a+frac*2*Math.PI; if(frac>=0.9999) a2=a+2*Math.PI-0.001;
     const x1=cx+R*Math.cos(a),y1=cy+R*Math.sin(a),x2=cx+R*Math.cos(a2),y2=cy+R*Math.sin(a2);
     const xi1=cx+r*Math.cos(a2),yi1=cy+r*Math.sin(a2),xi2=cx+r*Math.cos(a),yi2=cy+r*Math.sin(a);
     const large=frac>0.5?1:0;
     paths+=`<path d="M${x1} ${y1} A${R} ${R} 0 ${large} 1 ${x2} ${y2} L${xi1} ${yi1} A${r} ${r} 0 ${large} 0 ${xi2} ${yi2} Z" fill="${s.color}"/>`;
     a=a2;
   });
-  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${paths}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="26" font-weight="800" fill="var(--ink)">${total}</text><text x="${cx}" y="${cy+15}" text-anchor="middle" font-size="9" font-weight="700" fill="var(--ink3)" letter-spacing="1">MÉDICOS</text></svg>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="flex-shrink:0">${paths}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="28" font-weight="800" fill="var(--ink)">${total}</text><text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="9" font-weight="700" fill="var(--ink3)" letter-spacing="1">${label}</text></svg>`;
+}
+function pieBlock(segs, label){
+  const total=segs.reduce((s,x)=>s+x.n,0);
+  return `<div class="donut-wrap">${pie(segs,label)}
+    <div class="legend">${segs.map(s=>`<div class="leg-row"><span class="leg-dot" style="background:${s.color}"></span><span class="leg-nm">${s.nm}</span><span class="leg-v">${s.n}</span><span class="leg-pc">${pct(s.n,total)}%</span></div>`).join('')}</div>
+  </div>`;
 }
 
-// FUNNEL — labels outside bars, dark text
 function funnel(stages, opts){
-  opts=opts||{}; const minW=4;
-  const unit=opts.unit||'saem';
-  const max=stages[0].val||1;
+  opts=opts||{}; const minW=4, unit=opts.unit||'saem', max=stages[0].val||1;
   let html=`<div class="funnel3">`;
   stages.forEach((s,i)=>{
     const w=Math.max(s.val/max*100, minW);
@@ -436,8 +445,7 @@ function funnel(stages, opts){
       <div class="fs-head"><span class="fs-lbl">${s.lbl}</span><span class="fs-val">${s.val}</span></div>
       <div class="fs-track"><div class="fs-bar" style="width:${w}%;background:${s.color}"></div>
         ${i>0?`<span class="fs-conv">${conv}% do passo anterior</span>`:'<span class="fs-conv">topo do funil</span>'}
-      </div>
-    </div>`;
+      </div></div>`;
     const next=stages[i+1];
     if(next){
       const c=pct(next.val,s.val), drop=s.val-next.val;
@@ -452,8 +460,7 @@ function listSec(title, cls, items, open, render){
   return `<div class="list-sec">
     <div class="list-hd ${open?'open':''}" onclick="this.classList.toggle('open')">
       <div class="list-ttl ${cls}">${title}</div><span class="chev">▶</span>
-    </div>
-    <div class="list-body">${items.map(render).join('')}</div>
+    </div><div class="list-body">${items.map(render).join('')}</div>
   </div>`;
 }
 
@@ -467,7 +474,7 @@ function goalsStrip(){
     <div class="goal-pct"><span>Meta Fase 3 · Q4 2026</span><b>${p}%</b></div></div>`;};
   return `<div class="goals">
     <div class="goals-top"><h3>🎯 Progresso rumo à meta final</h3>
-    <div class="ctx">Estamos no <b>MVP</b> → 1ª onda inicia <b>10/06</b></div></div>
+    <div class="ctx">Estamos no <b>MVP</b> · 1ª onda em prospecção (<b>${DATA.medicos.fila}</b> médicos)</div></div>
     <div class="goal-grid">${bar(g.medicos)}${bar(g.pacientes)}${bar(g.frascos)}${bar(g.ratio)}</div>
   </div>`;
 }
@@ -477,24 +484,24 @@ function viewOverview(){
   const gmvDelta=pct(b.mes.jun.gmv-b.mes.mai.gmv,b.mes.mai.gmv);
   return goalsStrip()+
   `<div class="hero-strip">
-    <div class="hero feat"><div class="hero-lbl">💰 GMV B2C acumulado</div>
-      <div class="hero-val">${brl(b.gmv)}</div><div class="hero-sub">Mai–Jun · ${b.frascos} frascos vendidos</div>
-      <span class="delta up">▲ +${gmvDelta}% mai→jun</span>${spark([1247,2792])}</div>
+    <div class="hero feat"><div class="hero-lbl">💰 NMV B2C acumulado</div>
+      <div class="hero-val">${brl(b.nmv)}</div><div class="hero-sub">líquido · GMV ${brl(b.gmv)} − ${brl(b.desconto)} desc.</div>
+      <span class="delta up">▲ +${gmvDelta}% GMV mai→jun</span>${spark([1202,3224])}</div>
     <div class="hero"><div class="hero-lbl">👨‍⚕️ Médicos aceitos</div><div class="hero-val">${m.aceitos}</div>
-      <div class="hero-sub">${pct(m.aceitos,m.convidados)}% dos ${m.convidados} convidados</div></div>
+      <div class="hero-sub">${m.total} no funil · ${m.fila} em prospecção</div></div>
     <div class="hero"><div class="hero-lbl">📝 Prescrições</div><div class="hero-val">${m.prescricoes}</div>
-      <div class="hero-sub">${m.comPrescricao} de ${m.aceitos} aceitos prescreveram (${pct(m.comPrescricao,m.aceitos)}%)</div></div>
+      <div class="hero-sub">${m.comPrescricao} de ${m.aceitos} aceitos prescreveram</div></div>
     <div class="hero"><div class="hero-lbl">🌱 Pacientes no Cuida</div><div class="hero-val">${p.iniciados}</div>
-      <div class="hero-sub">${p.aguardando.length} aguardando termo</div></div>
+      <div class="hero-sub">${p.aceitos} aceitaram · ${p.aguardando.length} pendentes</div></div>
   </div>
   <div class="cols-12">
     <div class="panel"><div class="ph"><div><h3>🩺 Funil de médicos</h3><div class="ph-sub">resellers do projeto</div></div></div>
       <div class="pb">${funnel(m.funil,{unit:'médicos'})}
-      <div class="insight warn"><div class="ico">🚧</div><div class="body">Gargalo real: <b>11 médicos aceitaram</b>, mas só <span class="hl">1 prescreveu</span>. Destravar a 1ª prescrição de cada médico é a prioridade nº 1 do MVP.</div></div>
+      <div class="insight warn"><div class="ico">🚧</div><div class="body">Avanço: agora <b>3 médicos prescreveram</b> (era 1). Ainda assim, dos 11 que aceitaram, <span class="hl">8 nunca prescreveram</span> — foco em ativar a 1ª prescrição.</div></div>
       </div></div>
     <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">prescrição → Cuida</div></div></div>
       <div class="pb">${funnel(p.jornada.slice(0,3).map((s,i)=>({lbl:s.t,val:s.n,color:['var(--g0)','var(--g2)','var(--g3)'][i]})),{unit:'pacientes'})}
-      <div class="insight viol"><div class="ico">⏳</div><div class="body">A 1ª paciente (<b>Edite</b>, da Dra. Thayane) ainda não assinou o termo. <span class="hl">Converter esse 1 caso</span> destrava o início da coleta de RWE.</div></div>
+      <div class="insight viol"><div class="ico">📈</div><div class="body"><b>7 prescrições</b> e <span class="hl">2 já assinaram o termo</span>. A esteira começou a girar — o próximo marco é o 1º paciente entrar no Cuida.</div></div>
       </div></div>
   </div>`;
 }
@@ -506,12 +513,14 @@ function viewMedicos(){
   return `<div class="page-head"><div class="page-ico med">🩺</div>
     <div><h2>Médicos</h2><p>Quem entrou no funil, de onde veio e quem ainda falta ativar</p></div></div>
   <div class="hero-strip">
-    <div class="hero"><div class="hero-lbl">Convidados</div><div class="hero-val sm">${m.convidados}</div><div class="hero-sub">no MVP</div></div>
-    <div class="hero"><div class="hero-lbl">Aceitaram</div><div class="hero-val sm" style="color:var(--g2)">${m.aceitos}</div><div class="hero-sub">${pct(m.aceitos,m.convidados)}% conversão</div></div>
-    <div class="hero"><div class="hero-lbl">${tip('Tempo médio entre convite e assinatura do termo.','Lifecycle')}</div><div class="hero-val sm">${m.lifecycle}d</div><div class="hero-sub">convite → aceite</div></div>
-    <div class="hero"><div class="hero-lbl">Na fila</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">1ª onda (reps)</div></div>
+    <div class="hero"><div class="hero-lbl">No funil</div><div class="hero-val sm">${m.total}</div><div class="hero-sub">MVP + 1ª onda</div></div>
+    <div class="hero"><div class="hero-lbl">Aceitaram</div><div class="hero-val sm" style="color:var(--g2)">${m.aceitos}</div><div class="hero-sub">${pct(m.aceitos,m.convidados)}% do MVP</div></div>
+    <div class="hero"><div class="hero-lbl">Prescreveram</div><div class="hero-val sm" style="color:var(--g3)">${m.comPrescricao}</div><div class="hero-sub">${m.prescricoes} prescrições</div></div>
+    <div class="hero"><div class="hero-lbl">Em prospecção</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">1ª onda · ${m.reps.length} reps</div></div>
   </div>
   <div class="cols-12">
+    <div class="panel"><div class="ph"><div><h3>🥧 Status dos médicos</h3><div class="ph-sub">distribuição do funil</div></div></div>
+      <div class="pb">${pieBlock(m.status,"MÉDICOS")}</div></div>
     <div class="panel"><div class="ph"><div><h3>🩺 Funil Médicos</h3><div class="ph-sub">convite → aceite → prescrição</div></div></div>
       <div class="pb">${funnel(m.funil,{unit:'médicos'})}
         <div class="cr-strip">
@@ -519,31 +528,22 @@ function viewMedicos(){
           <div class="cr bad"><div class="cr-v">${pct(m.comPrescricao,m.aceitos)}%</div><div class="cr-l">Aceite → Prescrição</div></div>
         </div>
       </div></div>
-    <div class="panel"><div class="ph"><div><h3>🏅 Indicações por rep</h3></div></div>
-      <div class="pb">
-        ${m.reps.map(r=>`<div class="rep-card"><div class="rep-av" style="background:${r.color}">${r.av}</div>
-          <div class="rep-info"><div class="rep-nm">${r.nm}</div><div class="rep-meta">indicações na 1ª onda</div></div>
-          <div class="rep-big">${r.indicados}</div></div>`).join('')}
-      </div></div>
   </div>
-  <div class="cols-2" style="margin-top:16px">
-    <div class="panel"><div class="ph"><h3>🔬 Mix de especialidades</h3></div><div class="pb"><div class="seg">
+  <div class="cols-12" style="margin-top:16px">
+    <div class="panel"><div class="ph"><h3>🔬 Mix de especialidades</h3><div class="ph-sub">MVP</div></div><div class="pb"><div class="seg">
       ${m.especialidade.map((e,i)=>`<div class="seg-row"><div class="seg-rank">${i+1}</div><div class="seg-lbl">${e.nm}</div>
         <div class="seg-wrap"><div class="seg-bar" style="width:${e.n/espMax*100}%;background:${espC[i]}"></div></div><div class="seg-n">${e.n}</div></div>`).join('')}
-    </div>
-    <div class="insight viol" style="margin-top:18px"><div class="ico">🎯</div><div class="body"><b>Generalistas</b> dominam (10 de 26). Boa cobertura horizontal, mas vale recrutar mais <span class="hl">especialistas em dor</span> (reumato, ortopedia) — público-alvo direto do protocolo.</div></div>
-    </div></div>
-    <div class="panel"><div class="ph"><h3>📍 Origem dos médicos</h3><div class="ph-sub">interno vs. representantes</div></div><div class="pb">
-      <div class="donut-wrap">${donut(m.origem)}
-        <div class="legend">${m.origem.map(o=>{const t=m.origem.reduce((s,x)=>s+x.n,0);return `<div class="leg-row"><span class="leg-dot" style="background:${o.color}"></span><span class="leg-nm">${o.nm}</span><span class="leg-v">${o.n}</span><span class="leg-pc">${pct(o.n,t)}%</span></div>`;}).join('')}</div>
-      </div>
+    </div></div></div>
+    <div class="panel"><div class="ph"><h3>🏅 Indicações por rep</h3><div class="ph-sub">${m.repsTotal} médicos na 1ª onda</div></div><div class="pb">
+      ${m.reps.map(r=>`<div class="rep-card"><div class="rep-av" style="background:${r.color}">${r.av}</div>
+        <div class="rep-info"><div class="rep-nm">${r.nm}</div><div class="rep-meta">indicações</div></div>
+        <div class="rep-big">${r.indicados}</div></div>`).join('')}
     </div></div>
   </div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><h3>📋 Pipeline de status</h3><div class="ph-sub">quem precisa de ação</div></div><div class="pb">
     ${listSec(`✅ ${m.aceitos} aceitaram o projeto`,'muted',m.aceitosList,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.tag}</span></div>`)}
     ${listSec(`⚠️ ${m.declinados} declinaram`,'red',m.declinadosList,false,d=>`<div class="li red"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
     ${listSec(`⏳ ${m.pendentes} aguardando resposta — ação pendente`,'amber',m.pendentesList,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
-    ${listSec(`📋 ${m.fila} na fila — 1ª onda`,'muted',m.filaList,false,d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">Rep ${d.tag}</span></div>`)}
   </div></div>`;
 }
 
@@ -556,13 +556,17 @@ function viewPacientes(){
   ];
   return `<div class="page-head"><div class="page-ico pac">🧑‍🤝‍🧑</div>
     <div><h2>Pacientes — jornada clínica</h2><p>Da prescrição ao acompanhamento no Cannect Cuida e à coleta de RWE</p></div></div>
-  <div class="panel" style="margin-bottom:16px"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil Pacientes</h3><div class="ph-sub">prescrição → aceite → início no Cuida</div></div></div>
-    <div class="pb">${funnel(pfunil,{unit:'pacientes'})}
-      <div class="cr-strip">
-        <div class="cr"><div class="cr-v">${p.prescricoes?pct(p.aceitos,p.prescricoes)+'%':'—'}</div><div class="cr-l">Prescrição → Aceite</div></div>
-        <div class="cr"><div class="cr-v">${p.aceitos?pct(p.iniciados,p.aceitos)+'%':'—'}</div><div class="cr-l">Aceite → Iniciado</div></div>
-      </div>
-    </div></div>
+  <div class="cols-12" style="margin-bottom:16px">
+    <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil Pacientes</h3><div class="ph-sub">prescrição → aceite → Cuida</div></div></div>
+      <div class="pb">${funnel(pfunil,{unit:'pacientes'})}
+        <div class="cr-strip">
+          <div class="cr"><div class="cr-v">${p.prescricoes?pct(p.aceitos,p.prescricoes)+'%':'—'}</div><div class="cr-l">Prescrição → Aceite</div></div>
+          <div class="cr"><div class="cr-v">${p.aceitos?pct(p.iniciados,p.aceitos)+'%':'—'}</div><div class="cr-l">Aceite → Iniciado</div></div>
+        </div>
+      </div></div>
+    <div class="panel"><div class="ph"><div><h3>🥧 Status dos pacientes</h3><div class="ph-sub">do total prescrito</div></div></div>
+      <div class="pb">${pieBlock(p.status,"PACIENTES")}</div></div>
+  </div>
   <div class="cols-12">
     <div class="panel"><div class="ph"><div><h3>🛤️ Jornada do paciente</h3><div class="ph-sub">5 etapas até gerar evidência</div></div></div>
       <div class="pb"><div class="timeline">
@@ -571,58 +575,64 @@ function viewPacientes(){
           <div class="tl-body"><div class="tl-t">${s.t} <span class="tl-count">${s.n}</span></div><div class="tl-d">${s.d}</div></div>
         </div>`).join('')}
       </div></div></div>
-    <div class="panel"><div class="ph"><div><h3>📌 Caso em aberto</h3><div class="ph-sub">aguardando conversão</div></div></div>
+    <div class="panel"><div class="ph"><div><h3>📌 Casos em andamento</h3><div class="ph-sub">aceitos e pendentes</div></div></div>
       <div class="pb">
-        <div class="mg" style="grid-template-columns:1fr">
-          <div class="mc viol"><div class="mc-lbl">1ª prescrição do projeto</div><div class="mc-val v">1</div><div class="mc-sub">paciente indicado, termo pendente</div></div>
-        </div>
-        ${p.aguardando.map(d=>`<div class="li amber" style="margin-top:4px"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`).join('')}
-        <div class="insight viol"><div class="ico">🔑</div><div class="body">Este único caso é o <span class="hl">gate de todo o RWE</span>. Sem o termo assinado, a esteira clínica não começa. Vale um follow-up direto com a Dra. Thayane.</div></div>
+        ${listSec(`✅ ${p.aceitos} assinaram o termo`,'muted',p.convertidos,true,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="rs" style="color:var(--g2);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
+        ${listSec(`⏳ ${p.aguardando.length} aguardando termo`,'amber',p.aguardando,true,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
       </div></div>
   </div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🩹 Escalas clínicas (Cuida)</h3><div class="ph-sub">o que será medido em cada paciente</div></div>
     <span class="tag" style="background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-mid)">🔒 aguardando 1º check-in</span></div>
     <div class="pb"><div class="scale-grid">
-      ${p.escalas.map(s=>`<div class="scale-card locked"><div class="scale-t">${s.t} <span class="lk">🔒</span></div>
-        <div class="scale-bar"><i></i></div><div class="scale-d">${s.d}</div></div>`).join('')}
+      ${p.escalas.map(s=>`<div class="scale-card"><div class="scale-t">${s.t} <span class="lk">🔒</span></div>
+        <div class="scale-bar"></div><div class="scale-d">${s.d}</div></div>`).join('')}
     </div>
     <div class="insight" style="margin-top:16px"><div class="ico">📊</div><div class="body">Assim que o 1º paciente completar o <b>check-in do dia 6</b>, estes painéis ganham vida: evolução de dor, sono e PGIC vs. linha de base — o coração do white paper de RWE.</div></div>
     </div></div>`;
 }
 
 function viewB2C(state){
-  const b=DATA.b2c,sel=state.b2cMetric||'gmv',isG=sel==='gmv';
-  const vMai=isG?b.mes.mai.gmv:b.mes.mai.frascos, vJun=isG?b.mes.jun.gmv:b.mes.jun.frascos;
-  const max=Math.max(vMai,vJun), fmt=v=>isG?brl(v):v+" un.", delta=pct(vJun-vMai,vMai);
+  const b=DATA.b2c,sel=state.b2cMetric||'nmv',isN=sel==='nmv',isG=sel==='gmv',isF=sel==='frascos';
+  const key=isN?'nmv':isG?'gmv':'frascos';
+  const vMai=b.mes.mai[key], vJun=b.mes.jun[key];
+  const max=Math.max(vMai,vJun), fmt=v=>isF?v+" un.":brl(v), delta=pct(vJun-vMai,vMai);
   const prodMax=Math.max(...b.produtos.map(p=>p.un));
   return `<div class="page-head"><div class="page-ico b2c">🛒</div>
     <div><h2>B2C — canal direto ao consumidor</h2><p>Vendas avulsas Foliumed · maio–junho 2026 · independente do projeto</p></div></div>
+  <div class="panel" style="margin-bottom:16px"><div class="ph"><div><h3>💰 Valores de venda</h3><div class="ph-sub">acumulado · ${b.pedidos} pedidos</div></div></div>
+    <div class="pb"><div class="nmv-row">
+      <div class="nmv-box gmv"><div class="nl">${tip('Gross Merchandise Value — faturamento bruto, antes de descontos.','GMV')}</div><div class="nv">${brl(b.gmv)}</div><div class="ns">faturamento bruto</div></div>
+      <div class="nmv-op">−</div>
+      <div class="nmv-box desc"><div class="nl">Descontos</div><div class="nv">${brl(b.desconto)}</div><div class="ns">${pct(b.desconto,b.gmv)}% do GMV</div></div>
+      <div class="nmv-op">=</div>
+      <div class="nmv-box nmv"><div class="nl">${tip('Net Merchandise Value — receita líquida após descontos.','NMV')}</div><div class="nv">${brl(b.nmv)}</div><div class="ns">receita líquida</div></div>
+    </div></div></div>
   <div class="hero-strip">
-    <div class="hero feat"><div class="hero-lbl">💰 GMV acumulado</div><div class="hero-val sm">${brl(b.gmv)}</div><div class="hero-sub">faturamento bruto</div>${spark([1247,2792])}</div>
-    <div class="hero"><div class="hero-lbl">📦 Frascos vendidos</div><div class="hero-val sm">${b.frascos}</div><div class="hero-sub">unidades</div></div>
+    <div class="hero"><div class="hero-lbl">📦 Frascos vendidos</div><div class="hero-val sm">${b.frascos}</div><div class="hero-sub">${b.pedidos} pedidos</div></div>
     <div class="hero"><div class="hero-lbl">👨‍⚕️ Médicos únicos</div><div class="hero-val sm">${b.medicosUnicos}</div><div class="hero-sub">prescritores</div></div>
+    <div class="hero"><div class="hero-lbl">🧑 Pacientes únicos</div><div class="hero-val sm">${b.pacientesUnicos}</div><div class="hero-sub">compradores</div></div>
     <div class="hero"><div class="hero-lbl">🧾 Maior pedido</div><div class="hero-val sm">${brl(b.maiorPedido)}</div><div class="hero-sub">6 frascos · 05/06</div></div>
   </div>
   <div class="cols-2">
     <div class="panel"><div class="ph"><div><h3>📊 Evolução mensal</h3><div class="ph-sub">maio vs. junho</div></div>
-      <div class="toggle"><button class="tg ${isG?'active':''}" onclick="setMetric('gmv')">GMV</button><button class="tg ${!isG?'active':''}" onclick="setMetric('frascos')">Frascos</button></div></div>
+      <div class="toggle"><button class="tg ${isN?'active':''}" onclick="setMetric('nmv')">NMV</button><button class="tg ${isG?'active':''}" onclick="setMetric('gmv')">GMV</button><button class="tg ${isF?'active':''}" onclick="setMetric('frascos')">Frascos</button></div></div>
       <div class="pb">
         <div class="mbar"><div class="mbar-l">Maio</div><div class="mbar-wrap"><div class="mbar-fill" style="width:${vMai/max*100}%;background:var(--g3)"><span>${fmt(vMai)}</span></div></div></div>
         <div class="mbar"><div class="mbar-l">Junho</div><div class="mbar-wrap"><div class="mbar-fill" style="width:100%;background:var(--g1)"><span>${fmt(vJun)}</span></div></div></div>
         <div style="margin-top:15px;display:flex;align-items:center;gap:10px"><span class="delta up" style="font-size:14px">▲ +${delta}%</span>
-          <span style="font-size:11.5px;color:var(--ink3)">crescimento ${isG?'de faturamento':'de volume'} mai → jun</span></div>
-        <div class="insight"><div class="ico">⚡</div><div class="body">Junho ainda em curso (até 07/06) e já <span class="hl">superou maio inteiro</span> — ${isG?`+${delta}% de GMV`:`+${delta}% em frascos`}. Ritmo acelerando.</div></div>
+          <span style="font-size:11.5px;color:var(--ink3)">crescimento ${isF?'de volume':key.toUpperCase()} mai → jun</span></div>
+        <div class="insight"><div class="ico">⚡</div><div class="body">Junho cresceu <span class="hl">+${delta}%</span> em ${isF?'frascos':key.toUpperCase()}. Atenção: o desconto de junho saltou para <b>${brl(b.mes.jun.desconto)}</b> (Protocolo de Dor com 100% off), comprimindo a margem líquida.</div></div>
       </div></div>
-    <div class="panel"><div class="ph"><h3>🧪 Mix de produtos</h3><div class="ph-sub">acumulado</div></div><div class="pb">
-      <div class="prod-list">${b.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.gmv)}</span></div>
+    <div class="panel"><div class="ph"><h3>🧪 Mix de produtos</h3><div class="ph-sub">por unidade · NMV</div></div><div class="pb">
+      <div class="prod-list">${b.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.nmv)} NMV</span></div>
         <div class="prod-bg"><div class="prod-fill" style="width:${p.un/prodMax*100}%"><span>${pct(p.un,b.frascos)}%</span></div></div></div>`).join('')}</div>
-      <div class="insight"><div class="ico">🌅</div><div class="body">A versão <b>0,2% (Day)</b> carrega 91% das unidades. O <b>1% (Night)</b> ainda é nicho — oportunidade de educar o canal sobre o uso noturno.</div></div>
+      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Day (0,2%)</b> segue dominante (71% das unidades). O <b>Protocolo de Dor</b> entrou com NMV zero (100% desconto) — vale acompanhar se vira recompra paga.</div></div>
     </div></div>
   </div>`;
 }
 
 // ===================== APP =====================
-const state={tab:'overview', b2cMetric:'gmv'};
+const state={tab:'overview', b2cMetric:'nmv'};
 const TABS=[
   {id:'overview', lbl:'Visão Geral', icon:'📊'},
   {id:'medicos', lbl:'Médicos', icon:'🩺', count:DATA.medicos.aceitos},
@@ -631,7 +641,7 @@ const TABS=[
 ];
 
 function footer(){
-  return `<div class="foot"><div class="live"><span class="d"></span> Dados Atualizados Semanalmente</div><div class="src"><div class="row">PM <b style="color:var(--ink2)">Isabela Jatobá</b></div></div></div>`;
+  return `<div class="foot"><div class="live"><span class="d"></span> Dados Atualizados Semanalmente</div><div class="src">PM <b style="color:var(--ink2)">Isabela Jatobá</b></div></div>`;
 }
 
 function render(){
