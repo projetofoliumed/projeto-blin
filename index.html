@@ -268,7 +268,18 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .foot .live{font-size:10.5px;font-weight:700;color:var(--g2);display:flex;align-items:center;gap:6px}
 .foot .live .d{width:7px;height:7px;border-radius:50%;background:var(--g3);box-shadow:0 0 0 3px var(--g-light);animation:pulse 2s infinite}
 
+/* INDICADORES TABLE */
+.ind-tbl{display:flex;flex-direction:column}
+.ind-hd{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:8px 12px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:2px solid var(--border)}
+.ind-hd span:not(:first-child){text-align:center}
+.ind-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:11px 12px;border-bottom:1px solid var(--border2);align-items:center}
+.ind-row.tot{border-top:2px solid var(--border);border-bottom:none;background:var(--g-soft);font-weight:800;border-radius:0 0 8px 8px}
+.ind-nm{font-size:12.5px;font-weight:700;color:var(--ink);display:flex;flex-direction:column}
+.ind-nm small{font-size:10.5px;font-weight:500;color:var(--ink3);margin-top:1px}
+.ind-v{text-align:center;font-size:15px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+
 /* MOBILE */
+@media(max-width:860px){.hero-strip[style*="repeat(5"]{grid-template-columns:1fr 1fr !important}}
 @media(max-width:600px){
   .header{padding:16px 18px}.header h1{font-size:16px}.header .sub{font-size:11px}
   .tabs{padding:0 14px}.tab{padding:13px 13px;font-size:12.5px}
@@ -288,11 +299,11 @@ const DATA = {
   goals: {
     medicos:   {atual: 11, meta: 250,  lbl:"Médicos ativos", icon:"👨‍⚕️"},
     pacientes: {atual: 0,  meta: 750,  lbl:"Pacientes iniciados", icon:"🧑‍🤝‍🧑"},
-    frascos:   {atual: 0,  meta: 1500, lbl:"Frascos doados", icon:"📦"},
+    frascos:   {atual: 4,  meta: 1500, lbl:"Frascos doados", icon:"📦"},
     ratio:     {atual: 0,  meta: 3,    lbl:"Pacientes / médico", icon:"📊"}
   },
   medicos: {
-    total: 135, convidados: 19, aceitos: 11, declinados: 5, pendentes: 3, lifecycle: 2,
+    total: 135, convidados: 19, mvp: 19, aceitos: 11, declinados: 5, pendentes: 3, lifecycle: 2,
     fila: 116, comPrescricao: 3, prescricoes: 7, repsTotal: 41,
     funil: [
       {lbl:"Convidados MVP", val:19, color:"var(--g0)"},
@@ -303,7 +314,12 @@ const DATA = {
       {nm:"Termo assinado", n:11, color:"var(--g2)"},
       {nm:"Termo enviado", n:3, color:"var(--amber)"},
       {nm:"Recusado", n:5, color:"var(--red)"},
-      {nm:"Sem contato (fila)", n:116, color:"var(--ink4)"}
+      {nm:"Em contato (prospecção)", n:116, color:"var(--ink4)"}
+    ],
+    indicadores: [
+      {nm:"Rafaela Bock", esp:"Med. Família", prescritos:3, aceitos:2},
+      {nm:"Thayane Guimarães", esp:"Generalista", prescritos:2, aceitos:0},
+      {nm:"Denis Noronha", esp:"Generalista", prescritos:1, aceitos:0}
     ],
     aceitosList: [
       {nm:"Ana Paula Camargo", tag:"Reumatologia"},
@@ -342,7 +358,7 @@ const DATA = {
       {nm:"Ortopedia", n:1},
       {nm:"Clínica Médica", n:1}
     ],
-    onda1Interno: 75, onda1Reps: 41,
+    onda1Total: 116, onda1Interno: 75, onda1Reps: 41,
     origem: [
       {nm:"Interno", n:94, color:"var(--g2)"},
       {nm:"Reps (9)", n:41, color:"var(--violet)"}
@@ -365,6 +381,11 @@ const DATA = {
       {nm:"Termo assinado", n:2, color:"var(--g2)"},
       {nm:"Aguardando termo", n:5, color:"var(--amber)"}
     ],
+    doacoes: [
+      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · 10/06", frascos:2},
+      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · 16/06", frascos:2}
+    ],
+    doacoesProtocolos: 2, doacoesFrascos: 4,
     jornada: [
       {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:7, state:"done"},
       {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:2, state:"active"},
@@ -391,16 +412,15 @@ const DATA = {
     ]
   },
   b2c: {
-    medicosUnicos: 8, pacientesUnicos: 9, frascos: 14, pedidos: 9, carrinhos: 27,
-    gmv: 5686, desconto: 1260, nmv: 4426, maiorPedido: 2094,
+    medicosUnicos: 8, pacientesUnicos: 9, frascos: 12, pedidos: 7, carrinhos: 27,
+    gmv: 4488, desconto: 62, nmv: 4426, maiorPedido: 2094,
     mes: {
-      mai: {gmv:1247, desconto:45,   nmv:1202, frascos:3},
-      jun: {gmv:4439, desconto:1215, nmv:3224, frascos:11}
+      mai: {gmv:1247, desconto:45, nmv:1202, frascos:3},
+      jun: {gmv:3241, desconto:17, nmv:3224, frascos:9}
     },
     produtos: [
-      {nm:"Full Spectrum 20% + 0,2% THC (Day)", un:10, nmv:3455},
-      {nm:"Protocolo de Dor — Full Spectrum", un:2, nmv:0},
-      {nm:"Full Spectrum 20:1 · 1% THC (Night)", un:1, nmv:522},
+      {nm:"Full Spectrum 20% + 0,2% THC", un:10, nmv:3455},
+      {nm:"Full Spectrum 20:1 · 1% THC", un:1, nmv:522},
       {nm:"Full Spectrum 1:1 CBD/THC", un:1, nmv:449}
     ],
     ufPaciente: [
@@ -458,7 +478,7 @@ function funnel(stages, opts){
   opts=opts||{}; const minW=4, unit=opts.unit||'saem', max=stages[0].val||1;
   let html=`<div class="funnel3">`;
   stages.forEach((s,i)=>{
-    const w=Math.max(s.val/max*100, minW);
+    const w=s.val===0?0:Math.max(s.val/max*100, minW);
     const conv = i>0 ? pct(s.val, stages[i-1].val) : 100;
     html+=`<div class="fstep3">
       <div class="fs-head"><span class="fs-lbl">${s.lbl}</span><span class="fs-val">${s.val}</span></div>
@@ -531,8 +551,9 @@ function viewMedicos(){
   const espC=['var(--g0)','var(--g2)','var(--g2)','var(--g2)','var(--g3)','var(--g3)','var(--g4)','var(--g4)','var(--g4)'];
   return `<div class="page-head"><div class="page-ico med">🩺</div>
     <div><h2>Médicos</h2><p>Quem entrou no funil, de onde veio e quem ainda falta ativar</p></div></div>
-  <div class="hero-strip">
+  <div class="hero-strip" style="grid-template-columns:repeat(5,1fr)">
     <div class="hero"><div class="hero-lbl">No funil</div><div class="hero-val sm">${m.total}</div><div class="hero-sub">MVP + 1ª onda</div></div>
+    <div class="hero"><div class="hero-lbl">Do MVP</div><div class="hero-val sm">${m.mvp}</div><div class="hero-sub">médicos abordados</div></div>
     <div class="hero"><div class="hero-lbl">Aceitaram</div><div class="hero-val sm" style="color:var(--g2)">${m.aceitos}</div><div class="hero-sub">${pct(m.aceitos,m.convidados)}% do MVP</div></div>
     <div class="hero"><div class="hero-lbl">Prescreveram</div><div class="hero-val sm" style="color:var(--g3)">${m.comPrescricao}</div><div class="hero-sub">${m.prescricoes} prescrições</div></div>
     <div class="hero"><div class="hero-lbl">Em prospecção</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">1ª onda · ${m.reps.length} reps</div></div>
@@ -559,13 +580,20 @@ function viewMedicos(){
         <div class="rep-big">${r.indicados}</div></div>`).join('')}
     </div></div>
   </div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>📝 Médicos que já indicaram pacientes</h3><div class="ph-sub">prescritos vs. aceitos por médico</div></div></div><div class="pb">
+    <div class="ind-tbl">
+      <div class="ind-hd"><span>Médico</span><span>Prescritos</span><span>Aceitos</span><span>Conversão</span></div>
+      ${m.indicadores.map(d=>`<div class="ind-row"><span class="ind-nm">${d.nm}<small>${d.esp}</small></span><span class="ind-v">${d.prescritos}</span><span class="ind-v" style="color:var(--g2)">${d.aceitos}</span><span class="ind-v">${pct(d.aceitos,d.prescritos)}%</span></div>`).join('')}
+      <div class="ind-row tot"><span class="ind-nm">Total</span><span class="ind-v">${m.prescricoes}</span><span class="ind-v" style="color:var(--g2)">${DATA.pacientes.aceitos}</span><span class="ind-v">${pct(DATA.pacientes.aceitos,m.prescricoes)}%</span></div>
+    </div>
+  </div></div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><h3>📋 Pipeline de status</h3><div class="ph-sub">quem precisa de ação</div></div><div class="pb">
     <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--g2);background:var(--g-light);border-radius:7px;padding:7px 12px;display:inline-block;margin-bottom:4px">⭐ MVP · ${m.convidados} médicos abordados</div>
     ${listSec(`✅ ${m.aceitos} aceitaram o projeto`,'muted',m.aceitosList,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.tag}</span></div>`)}
     ${listSec(`⚠️ ${m.declinados} declinaram`,'red',m.declinadosList,false,d=>`<div class="li red"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
     ${listSec(`⏳ ${m.pendentes} aguardando resposta — ação pendente`,'amber',m.pendentesList,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
-    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--violet);background:var(--violet-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 1ª ONDA · ${m.onda1List.length} em prospecção</div>
-    ${listSec(`📋 ${m.onda1List.length} médicos na 1ª onda (${m.onda1Interno} internos · ${m.onda1Reps} via reps)`,'muted',m.onda1List,false,d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`)}
+    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--violet);background:var(--violet-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 1ª ONDA · ${m.onda1Total} em prospecção</div>
+    ${listSec(`📋 ${m.onda1Total} médicos na 1ª onda (${m.onda1Interno} internos · ${m.onda1Reps} via reps)`,'muted',m.onda1List,false,d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`)}
   </div></div>`;
 }
 
@@ -603,6 +631,12 @@ function viewPacientes(){
         ${listSec(`⏳ ${p.aguardando.length} aguardando termo`,'amber',p.aguardando,true,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
       </div></div>
   </div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🎁 Doações Projeto Frasco</h3><div class="ph-sub">Protocolos de Dor cedidos (NMV zero) · ${p.doacoesFrascos} frascos</div></div>
+    <span class="tag" style="background:var(--g-light);color:var(--g2);border:1px solid var(--g-mid)">${p.doacoesProtocolos} protocolos · ${p.doacoesFrascos} frascos</span></div>
+    <div class="pb">
+      ${p.doacoes.map(d=>`<div class="li" style="background:var(--g-soft);margin-bottom:6px"><span class="nm" style="color:var(--ink2)">${d.nm}</span><span class="rs" style="color:var(--ink3);font-style:normal">${d.rs}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.frascos} frascos</span></div>`).join('')}
+      <div class="insight"><div class="ico">🎁</div><div class="body">Cada <b>Protocolo de Dor</b> equivale a <b>2 frascos doados</b> pelo projeto (NMV zero no B2C). Estes ${p.doacoesFrascos} frascos contam na meta de <span class="hl">Frascos doados</span> da Visão Geral.</div></div>
+    </div></div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🩹 Escalas clínicas (Cuida)</h3><div class="ph-sub">o que será medido em cada paciente</div></div>
     <span class="tag" style="background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-mid)">🔒 aguardando 1º check-in</span></div>
     <div class="pb"><div class="scale-grid">
