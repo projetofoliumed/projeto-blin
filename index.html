@@ -295,31 +295,34 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 <script>
 // ===================== DATA (from xlsx, updated 16/06/2026) =====================
 const DATA = {
-  updated: "16/06/2026",
+  updated: "24/06/2026",
   goals: {
-    medicos:   {atual: 11, meta: 250,  lbl:"Médicos ativos", icon:"👨‍⚕️"},
+    medicos:   {atual: 12, meta: 250,  lbl:"Médicos ativos", icon:"👨‍⚕️"},
     pacientes: {atual: 0,  meta: 750,  lbl:"Pacientes iniciados", icon:"🧑‍🤝‍🧑"},
-    frascos:   {atual: 4,  meta: 1500, lbl:"Frascos doados", icon:"📦"},
+    frascos:   {atual: 10, meta: 1500, lbl:"Frascos doados", icon:"📦"},
     ratio:     {atual: 0,  meta: 3,    lbl:"Pacientes / médico", icon:"📊"}
   },
   medicos: {
-    total: 135, convidados: 19, mvp: 19, aceitos: 11, declinados: 5, pendentes: 3, lifecycle: 2,
-    fila: 116, comPrescricao: 3, prescricoes: 7, repsTotal: 41,
+    total: 412, convidados: 19, mvp: 19, aceitos: 12, declinados: 5, pendentes: 3, lifecycle: 2,
+    fila: 392, comPrescricao: 5, prescricoes: 12, repsTotal: 41,
+    onda1: 222, onda2: 171,
     funil: [
       {lbl:"Convidados MVP", val:19, color:"var(--g0)"},
-      {lbl:"Aceitaram termo", val:11, color:"var(--g2)"},
-      {lbl:"Prescreveram", val:3, color:"var(--g3)"}
+      {lbl:"Aceitaram termo", val:12, color:"var(--g2)"},
+      {lbl:"Prescreveram", val:5, color:"var(--g3)"}
     ],
     status: [
-      {nm:"Termo assinado", n:11, color:"var(--g2)"},
+      {nm:"Termo assinado", n:12, color:"var(--g2)"},
       {nm:"Termo enviado", n:3, color:"var(--amber)"},
       {nm:"Recusado", n:5, color:"var(--red)"},
-      {nm:"Em contato (prospecção)", n:116, color:"var(--ink4)"}
+      {nm:"Em contato (prospecção)", n:392, color:"var(--ink4)"}
     ],
     indicadores: [
-      {nm:"Rafaela Bock", esp:"Med. Família", prescritos:4, aceitos:2},
+      {nm:"Rafaela Bock", esp:"Med. Família", prescritos:6, aceitos:5},
       {nm:"Thayane Guimarães", esp:"Generalista", prescritos:2, aceitos:0},
-      {nm:"Denis Noronha", esp:"Generalista", prescritos:1, aceitos:0}
+      {nm:"Danielle Saldanha", esp:"Geriatria", prescritos:2, aceitos:0},
+      {nm:"Denis Noronha", esp:"Generalista", prescritos:1, aceitos:0},
+      {nm:"João Lucas Cunico", esp:"Generalista", prescritos:1, aceitos:1}
     ],
     aceitosList: [
       {nm:"Ana Paula Camargo", tag:"Reumatologia"},
@@ -332,7 +335,8 @@ const DATA = {
       {nm:"Denis Noronha", tag:"Generalista"},
       {nm:"Hugo Jaime", tag:"Med. Família"},
       {nm:"Jéssica Durand", tag:"Generalista"},
-      {nm:"Michele Ouriques", tag:"Geriatria"}
+      {nm:"Michele Ouriques", tag:"Geriatria"},
+      {nm:"Maria Julia Woelffel Busato", tag:"Generalista"}
     ],
     declinadosList: [
       {nm:"Thomas Helfenstein", rs:"razões pessoais"},
@@ -348,19 +352,19 @@ const DATA = {
     ],
     onda1List: [{"nm":"Adriano Ribeiro Medeiros","tag":"Interno"},{"nm":"Alexandre Aguiar Cardoso","tag":"Interno"},{"nm":"Alexandre Assuane Duarte","tag":"Interno"},{"nm":"Alexandre Massao Yoshizumi","tag":"Interno"},{"nm":"Aline Paiva Noble","tag":"Interno"},{"nm":"Ana Paula Bazilio","tag":"Interno"},{"nm":"Ana Paula Ferreira Lima","tag":"Interno"},{"nm":"André Luiz Basso","tag":"Interno"},{"nm":"Andreia Pereira Mendes","tag":"Interno"},{"nm":"Anna Karla Rocha Santana","tag":"Interno"},{"nm":"Antonio Candido Barone Neto","tag":"Interno"},{"nm":"Antonio Matosinhos Filho","tag":"Interno"},{"nm":"Arailton Francisco De Oliveira Neto","tag":"Interno"},{"nm":"Barbara Eliane Matos","tag":"Interno"},{"nm":"Bruno Paladini Camargo","tag":"Interno"},{"nm":"Caio Macedo Athayde Bonadio","tag":"Interno"},{"nm":"Camila Castelo Branco Pupe","tag":"Interno"},{"nm":"Cintia Pimentel Sayd","tag":"Interno"},{"nm":"Corina dos Reis Sepeda","tag":"Interno"},{"nm":"Daniele Tondolo Martins","tag":"Interno"},{"nm":"Eduardo Cavalheiro Fontes","tag":"Interno"},{"nm":"Douglas Henrique Pereira Damasceno","tag":"Interno"},{"nm":"Eduardo Aliende Perin","tag":"Interno"},{"nm":"Emanuele Miranda","tag":"Interno"},{"nm":"Emilio Figueiredo Netto","tag":"Interno"},{"nm":"Fabio Pinheiro Rocha Junior","tag":"Interno"},{"nm":"Felipe Augusto Biccas Mourao","tag":"Interno"},{"nm":"Felipe Chioro Gonzalez","tag":"Interno"},{"nm":"Felipe Renato Nadai","tag":"Interno"},{"nm":"Fernanda Castro Dantas","tag":"Interno"},{"nm":"Fernando de Lara Nunes Siqueira","tag":"Interno"},{"nm":"Gabriel Alfredo Krauss","tag":"Interno"},{"nm":"Gustavo Coutinho Medeiros de Andrade","tag":"Interno"},{"nm":"Iara Andrade de Souza","tag":"Interno"},{"nm":"Janaissa Mara Neto Diniz Ribeiro","tag":"Interno"},{"nm":"Jean Castro Cunha","tag":"Interno"},{"nm":"Jimmy Fardin Rocha","tag":"Interno"},{"nm":"Joaquim Maia de Toledo Piza","tag":"Interno"},{"nm":"José Wilson Veras Mourão Neto","tag":"Interno"},{"nm":"Julia Anon Brasolin","tag":"Interno"},{"nm":"Juliana de Abreu Mesquita","tag":"Interno"},{"nm":"Juliana Paiva Gouvêa Sicoli","tag":"Interno"},{"nm":"Karla Maria Arana","tag":"Interno"},{"nm":"Lenina Bittencourt","tag":"Interno"},{"nm":"Leonardo Tomasella","tag":"Interno"},{"nm":"Letierre Duarte Pereira","tag":"Interno"},{"nm":"Lislie Schoenstatt Abram Oliveira Gomes Bergantin","tag":"Interno"},{"nm":"Livia Lobo da Silva Costa Henrique","tag":"Interno"},{"nm":"Lorenza Paceau de Oliveira Preto","tag":"Interno"},{"nm":"Marcos Jose de Mello Prandine","tag":"Interno"},{"nm":"Maria Isabel Andrade Lourencao Nestarez","tag":"Interno"},{"nm":"Maria Julia Woelffel Busato","tag":"Interno"},{"nm":"Marina Vicente de Souza","tag":"Interno"},{"nm":"Marlon Donadon","tag":"Interno"},{"nm":"Matheus Abdalla de Souza","tag":"Interno"},{"nm":"Matheus Bernal Estaregui Bisam","tag":"Interno"},{"nm":"Mayara Thais Rover","tag":"Interno"},{"nm":"Miriam Gondim Meira Tibo","tag":"Interno"},{"nm":"Orlando Merli Borges","tag":"Interno"},{"nm":"Paulo Henrique Migliari de Carvalho","tag":"Interno"},{"nm":"Paulo Vítor Dos Santos","tag":"Interno"},{"nm":"Pedro Ernesto Pulcherio Filho","tag":"Interno"},{"nm":"Rodrigo Croce Geraldo","tag":"Interno"},{"nm":"Rodrigo Pedroso Reis","tag":"Interno"},{"nm":"Sabrina Favarin Martins Marcelino","tag":"Interno"},{"nm":"Stella Regina Carletti","tag":"Interno"},{"nm":"Tatiana Maluf Boszczowski","tag":"Interno"},{"nm":"Thatiane Fernandes da Silva","tag":"Interno"},{"nm":"Thiago Luccas Correa dos Santos Gomes","tag":"Interno"},{"nm":"Thiago Napolitano","tag":"Interno"},{"nm":"Thiago Xavier Correa","tag":"Interno"},{"nm":"Tulio Siano Rossini","tag":"Interno"},{"nm":"Valeria Lacks","tag":"Interno"},{"nm":"Virginia Campagnaro Santi","tag":"Interno"},{"nm":"Livia Ferreira Martinic","tag":"Danieli"},{"nm":"Rafael Vilano Avelar","tag":"Danieli"},{"nm":"Gervásio D´Araujo da Cunha Gonçalves Filho","tag":"Danieli"},{"nm":"Lara Sepulveda De Andrade Freire","tag":"Filipe"},{"nm":"Alan de Castro Andrade","tag":"Filipe"},{"nm":"Ana Paula Bittencourt Marques Lisboa Peixoto","tag":"Filipe"},{"nm":"Kenia Guinar Silveira","tag":"Filipe"},{"nm":"Kassia Amaral dos Santos","tag":"Filipe"},{"nm":"Tathiane Karen Herculano Barbary","tag":"Gabriela"},{"nm":"Ana Rachel de Oliveira Vermejo","tag":"Gabriela"},{"nm":"Romulo da Costa Torres","tag":"Gabriela"},{"nm":"Vitor Nunes Rodrigues da Silva","tag":"Gabriela"},{"nm":"José Luiz Granieri","tag":"Gabriela"},{"nm":"Fábio Landel Alysson Araújo Franklin","tag":"Gustavo"},{"nm":"Plinio Miguel Loguercio Quinette","tag":"Gustavo"},{"nm":"Arthur Felipe Lauf Melotti","tag":"Gustavo"},{"nm":"Ricardo Almeida Alencar","tag":"Jéssica"},{"nm":"Riana Rodrigues Emilio Lopes","tag":"Jéssica"},{"nm":"Juliana Valões","tag":"Jéssica"},{"nm":"Nancy Huang","tag":"Jéssica"},{"nm":"Anderson Mikalauskas","tag":"Jéssica"},{"nm":"Caetano Almeida Silva","tag":"Luca"},{"nm":"Matheus Porto De Farias Alves","tag":"Luca"},{"nm":"Leonardo Tonello Romero","tag":"Luca"},{"nm":"Vanessa Ota Nogueira","tag":"Luca"},{"nm":"Esmar Rodrigues Arantes Filho","tag":"Luca"},{"nm":"Luis Wanderlei Correia De Queiroz Junior","tag":"Maysa"},{"nm":"Filipe Lins Linhares De Sousa","tag":"Maysa"},{"nm":"Ana Paula Chibeni Fernandez","tag":"Maysa"},{"nm":"Beatriz Jalbut Jacob","tag":"Maysa"},{"nm":"Carolina Marques Lopes","tag":"Maysa"},{"nm":"Yussef Aiex Abdu Neme Abrahim","tag":"Mikaelle"},{"nm":"Filipe Terra Curupaná","tag":"Mikaelle"},{"nm":"Leandro Losada Medeiros","tag":"Mikaelle"},{"nm":"Marcos Adams","tag":"Mikaelle"},{"nm":"Luiz Paulo Neto Sarmento","tag":"Mikaelle"},{"nm":"Fabio Willians Rossi Santana","tag":"Renata"},{"nm":"Evelyn Esteres Oliveira","tag":"Renata"},{"nm":"Lucilia de Brito Tavares","tag":"Renata"},{"nm":"Thiago da Cunha Westmann","tag":"Renata"},{"nm":"Lais Patricio Vieira","tag":"Renata"}],
     especialidade: [
-      {nm:"Generalista", n:15},
-      {nm:"Med. Família", n:5},
-      {nm:"Acupuntura", n:3},
-      {nm:"Med. Física/Reab.", n:3},
-      {nm:"Neurologia", n:3},
-      {nm:"Geriatria", n:2},
-      {nm:"Reumatologia", n:1},
-      {nm:"Ortopedia", n:1},
-      {nm:"Clínica Médica", n:1}
+      {nm:"Generalista", n:100},
+      {nm:"Med. Família", n:65},
+      {nm:"Clínica Médica", n:36},
+      {nm:"Acupuntura", n:19},
+      {nm:"Neurologia", n:19},
+      {nm:"Anestesiologia", n:18},
+      {nm:"Ortopedia", n:16},
+      {nm:"Ginecologia", n:15},
+      {nm:"Med. Física/Reab.", n:10}
     ],
-    onda1Total: 116, onda1Interno: 75, onda1Reps: 41,
+    onda1Total: 222, onda2Total: 171, onda1Interno: 181, onda1Reps: 41,
     origem: [
-      {nm:"Interno", n:94, color:"var(--g2)"},
+      {nm:"Interno", n:371, color:"var(--g2)"},
       {nm:"Reps (9)", n:41, color:"var(--violet)"}
     ],
     reps: [
@@ -376,19 +380,22 @@ const DATA = {
     ]
   },
   pacientes: {
-    prescricoes: 7, aceitos: 2, iniciados: 0, declinados: 0,
+    prescricoes: 12, aceitos: 6, iniciados: 0, declinados: 0,
     status: [
-      {nm:"Termo assinado", n:2, color:"var(--g2)"},
-      {nm:"Aguardando termo", n:5, color:"var(--amber)"}
+      {nm:"Termo assinado", n:6, color:"var(--g2)"},
+      {nm:"Aguardando termo", n:6, color:"var(--amber)"}
     ],
     doacoes: [
       {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · 10/06", frascos:2},
-      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · 16/06", frascos:2}
+      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · 16/06", frascos:2},
+      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · 16/06", frascos:2},
+      {nm:"Eli Machado dos Santos", rs:"Dra. Rafaela Bock · 19/06", frascos:2},
+      {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · 19/06", frascos:2}
     ],
-    doacoesProtocolos: 2, doacoesFrascos: 4,
+    doacoesProtocolos: 5, doacoesFrascos: 10,
     jornada: [
-      {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:7, state:"done"},
-      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:2, state:"active"},
+      {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:12, state:"done"},
+      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:6, state:"active"},
       {t:"Pedido entregue", d:"Entrega rastreada via Memphis", n:0, state:"todo"},
       {t:"Cuida ativado", d:"1º contato do acompanhamento clínico", n:0, state:"todo"},
       {t:"Check-in D6 / D10", d:"Coleta de dados → RWE gerado", n:0, state:"todo"}
@@ -397,12 +404,17 @@ const DATA = {
       {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane · 02/06"},
       {nm:"Célia Regina de Mello", rs:"Dr. Denis Noronha · 10/06"},
       {nm:"Ariana Jéssica Lopes Rios", rs:"Dra. Thayane · 13/06"},
-      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · 12/06"},
-      {nm:"Valtrudes Diel", rs:"Dra. Rafaela Bock · 12/06"}
+      {nm:"Valtrudes Diel", rs:"Dra. Rafaela Bock · 12/06"},
+      {nm:"Giselle Mamede Tenório", rs:"Dra. Danielle Saldanha · 18/06"},
+      {nm:"Rosete Galvão de Paula", rs:"Dra. Danielle Saldanha · 18/06"}
     ],
     convertidos: [
-      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · aceite 10/06"},
-      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · aceite 16/06"}
+      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · 10/06"},
+      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · 16/06"},
+      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · 16/06"},
+      {nm:"Eli Machado dos Santos", rs:"Dra. Rafaela Bock · 19/06"},
+      {nm:"Felipe Braga Santana", rs:"Dr. João Lucas Cunico · 18/06"},
+      {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · 19/06"}
     ],
     escalas: [
       {t:"Dor (0–10)", d:"Δ vs. basal por paciente"},
@@ -412,28 +424,30 @@ const DATA = {
     ]
   },
   b2c: {
-    medicosUnicos: 8, pacientesUnicos: 9, frascos: 12, pedidos: 7, carrinhos: 27,
-    gmv: 4488, desconto: 62, nmv: 4426, maiorPedido: 2094,
+    medicosUnicos: 8, pacientesUnicos: 12, frascos: 12, pedidos: 7, carrinhos: 27,
+    gmv: 4738, desconto: 92, nmv: 4646, maiorPedido: 2094,
     mes: {
       mai: {gmv:1247, desconto:45, nmv:1202, frascos:3},
-      jun: {gmv:3241, desconto:17, nmv:3224, frascos:9}
+      jun: {gmv:3491, desconto:47, nmv:3444, frascos:9}
     },
     produtos: [
-      {nm:"Full Spectrum 20% + 0,2% THC", un:10, nmv:3455},
+      {nm:"Full Spectrum 20% + 0,2% THC", un:9, nmv:3106},
+      {nm:"Protocolo de Dor — Full Spectrum", un:1, nmv:569},
       {nm:"Full Spectrum 20:1 · 1% THC", un:1, nmv:522},
       {nm:"Full Spectrum 1:1 CBD/THC", un:1, nmv:449}
     ],
     ufPaciente: [
-      {nm:"São Paulo (SP)", n:4, color:"var(--g2)"},
-      {nm:"Santa Catarina (SC)", n:2, color:"var(--g3)"},
-      {nm:"Rio Grande do Sul (RS)", n:1, color:"var(--g4)"},
-      {nm:"Paraná (PR)", n:1, color:"var(--blue)"},
-      {nm:"Minas Gerais (MG)", n:1, color:"var(--violet)"}
+      {nm:"Santa Catarina (SC)", n:6, color:"var(--g2)"},
+      {nm:"Rio de Janeiro (RJ)", n:2, color:"var(--g3)"},
+      {nm:"Paraná (PR)", n:2, color:"var(--blue)"},
+      {nm:"São Paulo (SP)", n:1, color:"var(--g4)"},
+      {nm:"Bahia (BA)", n:1, color:"var(--amber)"}
     ],
     ufMedico: [
-      {nm:"São Paulo (SP)", n:3, color:"var(--g2)"},
+      {nm:"Rio de Janeiro (RJ)", n:2, color:"var(--g2)"},
       {nm:"Santa Catarina (SC)", n:2, color:"var(--g3)"},
-      {nm:"Rio de Janeiro (RJ)", n:2, color:"var(--blue)"},
+      {nm:"Paraná (PR)", n:2, color:"var(--blue)"},
+      {nm:"São Paulo (SP)", n:1, color:"var(--g4)"},
       {nm:"Bahia (BA)", n:1, color:"var(--amber)"}
     ]
   }
@@ -513,7 +527,7 @@ function goalsStrip(){
     <div class="goal-pct"><span>Meta Fase 3 · Q4 2026</span><b>${p}%</b></div></div>`;};
   return `<div class="goals">
     <div class="goals-top"><h3>🎯 Progresso rumo à meta final</h3>
-    <div class="ctx">Estamos no <b>MVP</b> · 1ª onda em prospecção (<b>${DATA.medicos.fila}</b> médicos)</div></div>
+    <div class="ctx">Estamos no <b>MVP</b> · 1ª e 2ª onda em prospecção (<b>${DATA.medicos.fila}</b> médicos)</div></div>
     <div class="goal-grid">${bar(g.medicos)}${bar(g.pacientes)}${bar(g.frascos)}${bar(g.ratio)}</div>
   </div>`;
 }
@@ -536,11 +550,11 @@ function viewOverview(){
   <div class="cols-12">
     <div class="panel"><div class="ph"><div><h3>🩺 Funil de médicos</h3><div class="ph-sub">resellers do projeto</div></div></div>
       <div class="pb">${funnel(m.funil,{unit:'médicos'})}
-      <div class="insight warn"><div class="ico">🚧</div><div class="body">Avanço: agora <b>3 médicos prescreveram</b> (era 1). Ainda assim, dos 11 que aceitaram, <span class="hl">8 nunca prescreveram</span> — foco em ativar a 1ª prescrição.</div></div>
+      <div class="insight warn"><div class="ico">🚧</div><div class="body">Avanço: agora <b>5 médicos prescreveram</b> (era 3). Ainda assim, dos 12 que aceitaram, <span class="hl">7 nunca prescreveram</span> — foco em ativar a 1ª prescrição.</div></div>
       </div></div>
     <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">prescrição → Cuida</div></div></div>
       <div class="pb">${funnel(p.jornada.slice(0,3).map((s,i)=>({lbl:s.t,val:s.n,color:['var(--g0)','var(--g2)','var(--g3)'][i]})),{unit:'pacientes'})}
-      <div class="insight viol"><div class="ico">📈</div><div class="body"><b>7 prescrições</b> e <span class="hl">2 já assinaram o termo</span>. A esteira começou a girar — o próximo marco é o 1º paciente entrar no Cuida.</div></div>
+      <div class="insight viol"><div class="ico">📈</div><div class="body"><b>12 prescrições</b> e <span class="hl">6 já assinaram o termo</span> (era 2). A esteira acelerou — o próximo marco é o 1º paciente entrar no Cuida.</div></div>
       </div></div>
   </div>`;
 }
@@ -552,11 +566,11 @@ function viewMedicos(){
   return `<div class="page-head"><div class="page-ico med">🩺</div>
     <div><h2>Médicos</h2><p>Quem entrou no funil, de onde veio e quem ainda falta ativar</p></div></div>
   <div class="hero-strip" style="grid-template-columns:repeat(5,1fr)">
-    <div class="hero"><div class="hero-lbl">No funil</div><div class="hero-val sm">${m.total}</div><div class="hero-sub">MVP + 1ª onda</div></div>
+    <div class="hero"><div class="hero-lbl">No funil</div><div class="hero-val sm">${m.total}</div><div class="hero-sub">MVP + 1ª + 2ª onda</div></div>
     <div class="hero"><div class="hero-lbl">Do MVP</div><div class="hero-val sm">${m.mvp}</div><div class="hero-sub">médicos abordados</div></div>
     <div class="hero"><div class="hero-lbl">Aceitaram</div><div class="hero-val sm" style="color:var(--g2)">${m.aceitos}</div><div class="hero-sub">${pct(m.aceitos,m.convidados)}% do MVP</div></div>
     <div class="hero"><div class="hero-lbl">Prescreveram</div><div class="hero-val sm" style="color:var(--g3)">${m.comPrescricao}</div><div class="hero-sub">${m.prescricoes} prescrições</div></div>
-    <div class="hero"><div class="hero-lbl">Em prospecção</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">1ª onda · ${m.reps.length} reps</div></div>
+    <div class="hero"><div class="hero-lbl">Em prospecção</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">1ª (${m.onda1}) + 2ª (${m.onda2}) onda</div></div>
   </div>
   <div class="cols-12">
     <div class="panel"><div class="ph"><div><h3>🥧 Status dos médicos</h3><div class="ph-sub">distribuição do funil</div></div></div>
@@ -592,8 +606,10 @@ function viewMedicos(){
     ${listSec(`✅ ${m.aceitos} aceitaram o projeto`,'muted',m.aceitosList,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.tag}</span></div>`)}
     ${listSec(`⚠️ ${m.declinados} declinaram`,'red',m.declinadosList,false,d=>`<div class="li red"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
     ${listSec(`⏳ ${m.pendentes} aguardando resposta — ação pendente`,'amber',m.pendentesList,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
-    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--violet);background:var(--violet-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 1ª ONDA · ${m.onda1Total} em prospecção</div>
-    ${listSec(`📋 ${m.onda1Total} médicos na 1ª onda (${m.onda1Interno} internos · ${m.onda1Reps} via reps)`,'muted',m.onda1List,false,d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`)}
+    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--violet);background:var(--violet-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 1ª ONDA · ${m.onda1Total} em prospecção (${m.onda1Interno} internos · ${m.onda1Reps} via reps)</div>
+    ${listSec(`📋 ${m.onda1List.length} médicos via reps + base inicial`,'muted',m.onda1List,false,d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`)}
+    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);background:var(--blue-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 2ª ONDA · ${m.onda2} médicos (base interna)</div>
+    <div style="font-size:12px;color:var(--ink3);padding:4px 2px">Nova leva de ${m.onda2} médicos da base interna, em prospecção inicial.</div>
   </div></div>`;
 }
 
@@ -682,7 +698,7 @@ function viewB2C(state){
     <div class="panel"><div class="ph"><h3>🧪 Mix de produtos</h3><div class="ph-sub">por unidade · NMV</div></div><div class="pb">
       <div class="prod-list">${b.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.nmv)} NMV</span></div>
         <div class="prod-bg"><div class="prod-fill" style="width:${p.un/prodMax*100}%"><span>${pct(p.un,b.frascos)}%</span></div></div></div>`).join('')}</div>
-      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Day (0,2%)</b> segue dominante (71% das unidades). O <b>Protocolo de Dor</b> entrou com NMV zero (100% desconto) — vale acompanhar se vira recompra paga.</div></div>
+      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (75% das unidades). Destaque: 1 <b>Protocolo de Dor</b> virou <span class="hl">venda paga</span> (R$ 569) — além dos 5 doados pelo projeto.</div></div>
     </div></div>
   </div>
   <div class="cols-2" style="margin-top:16px">
