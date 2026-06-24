@@ -268,6 +268,15 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 .foot .live{font-size:10.5px;font-weight:700;color:var(--g2);display:flex;align-items:center;gap:6px}
 .foot .live .d{width:7px;height:7px;border-radius:50%;background:var(--g3);box-shadow:0 0 0 3px var(--g-light);animation:pulse 2s infinite}
 
+/* WAVE SECTIONS (ondas) */
+.wave-sec{margin-top:18px}
+.wave-hd{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;border-radius:8px;padding:11px 14px;cursor:pointer;user-select:none;flex-wrap:wrap}
+.wave-chev{font-size:10px;font-weight:700;opacity:.85;white-space:nowrap;transition:transform .2s}
+.wave-hd.open .wave-chev{transform:none}
+.wave-hd.open .wave-chev::first-letter{display:inline-block}
+.wave-body{display:none;margin-top:10px;max-height:340px;overflow-y:auto;padding-right:4px}
+.wave-hd.open + .wave-body{display:block}
+
 /* INDICADORES TABLE */
 .ind-tbl{display:flex;flex-direction:column}
 .ind-hd{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:8px;padding:8px 12px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);border-bottom:2px solid var(--border)}
@@ -606,10 +615,19 @@ function viewMedicos(){
     ${listSec(`✅ ${m.aceitos} aceitaram o projeto`,'muted',m.aceitosList,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.tag}</span></div>`)}
     ${listSec(`⚠️ ${m.declinados} declinaram`,'red',m.declinadosList,false,d=>`<div class="li red"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
     ${listSec(`⏳ ${m.pendentes} aguardando resposta — ação pendente`,'amber',m.pendentesList,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
-    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--violet);background:var(--violet-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 1ª ONDA · ${m.onda1Total} em prospecção (${m.onda1Interno} internos · ${m.onda1Reps} via reps)</div>
-    ${listSec(`📋 ${m.onda1List.length} médicos via reps + base inicial`,'muted',m.onda1List,false,d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`)}
-    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--blue);background:var(--blue-light);border-radius:7px;padding:7px 12px;display:inline-block;margin:22px 0 4px">🌊 2ª ONDA · ${m.onda2} médicos (base interna)</div>
-    <div style="font-size:12px;color:var(--ink3);padding:4px 2px">Nova leva de ${m.onda2} médicos da base interna, em prospecção inicial.</div>
+    <div class="wave-sec">
+      <div class="wave-hd" onclick="this.classList.toggle('open')" style="background:var(--violet-light);color:var(--violet)">
+        <span>🌊 1ª ONDA · ${m.onda1Total} em prospecção (${m.onda1Interno} internos · ${m.onda1Reps} via reps)</span>
+        <span class="wave-chev">▶ ver ${m.onda1List.length} nomes</span>
+      </div>
+      <div class="wave-body">${m.onda1List.map(d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`).join('')}</div>
+    </div>
+    <div class="wave-sec">
+      <div class="wave-hd" style="background:var(--blue-light);color:var(--blue);cursor:default">
+        <span>🌊 2ª ONDA · ${m.onda2} médicos (base interna)</span>
+      </div>
+      <div style="font-size:12px;color:var(--ink3);padding:9px 4px 2px">Nova leva de ${m.onda2} médicos da base interna, em prospecção inicial. Nomes serão detalhados conforme avançam no funil.</div>
+    </div>
   </div></div>`;
 }
 
