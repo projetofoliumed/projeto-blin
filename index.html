@@ -433,8 +433,15 @@ const DATA = {
     ]
   },
   b2c: {
-    medicosUnicos: 8, pacientesUnicos: 12, frascos: 12, pedidos: 7, carrinhos: 27,
+    medicosUnicos: 8, pacientesUnicos: 12, frascos: 12, pedidos: 7, carrinhos: 34,
     gmv: 4738, desconto: 92, nmv: 4646, maiorPedido: 2094,
+    carrinhoItens: 45, carrinhoValor: 25774,
+    carrinhoProdutos: [
+      {nm:"Full Spectrum 1:1 CBD/THC · 1%", un:27, vl:15091},
+      {nm:"Full Spectrum 20:1 · 1% THC", un:7, vl:3988},
+      {nm:"Protocolo de Dor — Full Spectrum", un:6, vl:4464},
+      {nm:"Full Spectrum 20% + 0,2% THC", un:5, vl:2231}
+    ],
     mes: {
       mai: {gmv:1247, desconto:45, nmv:1202, frascos:3},
       jun: {gmv:3491, desconto:47, nmv:3444, frascos:9}
@@ -719,6 +726,13 @@ function viewB2C(state){
       <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (75% das unidades). Destaque: 1 <b>Protocolo de Dor</b> virou <span class="hl">venda paga</span> (R$ 569) — além dos 5 doados pelo projeto.</div></div>
     </div></div>
   </div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🛒 Carrinhos em aberto · produtos</h3><div class="ph-sub">${b.carrinhos} carrinhos · ${b.carrinhoItens} unidades · ${brl(b.carrinhoValor)} em potencial</div></div>
+    <span class="tag" style="background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-mid)">oportunidades a converter</span></div>
+    <div class="pb">
+      <div class="prod-list">${b.carrinhoProdutos.map(p=>{const cm=Math.max(...b.carrinhoProdutos.map(x=>x.un));return `<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.vl)}</span></div>
+        <div class="prod-bg"><div class="prod-fill" style="width:${p.un/cm*100}%;background:linear-gradient(90deg,var(--amber),#E0A93A)"><span>${p.un}</span></div></div></div>`;}).join('')}</div>
+      <div class="insight warn"><div class="ico">💰</div><div class="body">São <b>${b.carrinhos} carrinhos abertos</b> com <span class="hl">${b.carrinhoItens} frascos</span> (R$ ${b.carrinhoValor.toLocaleString("pt-BR")} em potencial). O <b>1:1 CBD/THC</b> lidera a demanda represada — foco de recuperação.</div></div>
+    </div></div>
   <div class="cols-2" style="margin-top:16px">
     <div class="panel"><div class="ph"><div><h3>🗺️ Estado dos pacientes</h3><div class="ph-sub">UF dos ${b.pacientesUnicos} pacientes únicos</div></div></div>
       <div class="pb">${pieBlock(b.ufPaciente,"PACIENTES")}</div></div>
