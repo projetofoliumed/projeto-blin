@@ -396,10 +396,10 @@ const DATA = {
     ]
   },
   pacientes: {
-    prescricoes: 17, aceitos: 8, iniciados: 0, declinados: 0,
+    prescricoes: 17, aceitos: 10, iniciados: 0, declinados: 0,
     status: [
-      {nm:"Termo assinado", n:8, color:"var(--g2)"},
-      {nm:"Aguardando termo", n:9, color:"var(--amber)"}
+      {nm:"Termo assinado", n:10, color:"var(--g2)"},
+      {nm:"Aguardando termo", n:7, color:"var(--amber)"}
     ],
     doacoes: [
       {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · 10/06", frascos:2},
@@ -415,31 +415,31 @@ const DATA = {
     doacoesProtocolos: 9, doacoesFrascos: 18,
     jornada: [
       {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:17, state:"done"},
-      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:8, state:"active"},
+      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:10, state:"active"},
       {t:"Pedido entregue", d:"Entrega rastreada via Memphis", n:0, state:"todo"},
       {t:"Cuida ativado", d:"1º contato do acompanhamento clínico", n:0, state:"todo"},
       {t:"Check-in D6 / D10", d:"Coleta de dados → RWE gerado", n:0, state:"todo"}
     ],
     aguardando: [
+      {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane · 02/06"},
       {nm:"Célia Regina de Mello", rs:"Dr. Denis Noronha · 10/06"},
       {nm:"Ariana Jéssica Lopes Rios", rs:"Dra. Thayane · 13/06"},
       {nm:"Valtrudes Diel", rs:"Dra. Rafaela Bock · 12/06"},
       {nm:"Giselle Mamede Tenório", rs:"Dra. Danielle Saldanha · 18/06"},
-      {nm:"Rosete Galvão de Paula", rs:"Dra. Danielle Saldanha · 18/06"},
       {nm:"Mona Liza Santana S. R. Macedo", rs:"Dra. Ana Paula Camargo · 23/06"},
-      {nm:"Tais Aparecida da Rosa", rs:"Dra. Maria Julia Busato · 26/06"},
-      {nm:"Maria Aparecida Provazzi Roberto", rs:"Dra. Gabriela Caponero · 26/06"},
-      {nm:"Debora dos Santos", rs:"Dra. Gabriela Caponero · 30/06"}
+      {nm:"Maria Aparecida Provazzi Roberto", rs:"Dra. Gabriela Caponero · 26/06"}
     ],
     convertidos: [
-      {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane Guimarães"},
       {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · 10/06"},
       {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · 16/06"},
       {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · 16/06"},
       {nm:"Eli Machado dos Santos", rs:"Dra. Rafaela Bock · 19/06"},
       {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · 19/06"},
+      {nm:"Tais Aparecida da Rosa", rs:"Dra. Maria Julia Busato · 27/06"},
       {nm:"Michele dos Santos Rodrigues", rs:"Dra. Michele Ouriques · 27/06"},
-      {nm:"Jaciel Gomes da Silva", rs:"Dr. Ygor Lopes Carvalho · 30/06"}
+      {nm:"Rosete Galvão de Paula", rs:"Dra. Danielle Saldanha · 30/06"},
+      {nm:"Jaciel Gomes da Silva", rs:"Dr. Ygor Lopes Carvalho · 30/06"},
+      {nm:"Debora dos Santos", rs:"Dra. Gabriela Caponero · 30/06"}
     ],
     escalas: [
       {t:"Dor (0–10)", d:"Δ vs. basal por paciente"},
@@ -595,7 +595,7 @@ function viewOverview(){
       </div></div>
     <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">prescrição → Cuida</div></div></div>
       <div class="pb">${funnel(p.jornada.slice(0,3).map((s,i)=>({lbl:s.t,val:s.n,color:['var(--g0)','var(--g2)','var(--g3)'][i]})),{unit:'pacientes'})}
-      <div class="insight viol"><div class="ico">📈</div><div class="body"><b>17 prescrições</b> e <span class="hl">8 já assinaram o termo</span> (era 6). A esteira acelerou — o próximo marco é o 1º paciente entrar no Cuida.</div></div>
+      <div class="insight viol"><div class="ico">📈</div><div class="body"><b>17 prescrições</b> e <span class="hl">10 já assinaram o termo</span> (era 8). A esteira acelerou — o próximo marco é o 1º paciente entrar no Cuida.</div></div>
       </div></div>
   </div>`;
 }
