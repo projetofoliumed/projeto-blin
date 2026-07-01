@@ -449,15 +449,18 @@ const DATA = {
     ]
   },
   b2c: {
-    medicosUnicos: 8, pacientesUnicos: 8, frascos: 13, pedidos: 8, carrinhos: 34,
+    medicosUnicos: 8, pacientesUnicos: 8, frascos: 13, pedidos: 8, carrinhos: 18,
     gmv: 5337, desconto: 92, nmv: 5245, maiorPedido: 2094,
-    carrinhoItens: 45, carrinhoValor: 25774,
-    carrinhoProdutos: [
-      {nm:"Full Spectrum 1:1 CBD/THC · 1%", un:27, vl:15091},
-      {nm:"Full Spectrum 20:1 · 1% THC", un:7, vl:3988},
-      {nm:"Protocolo de Dor — Full Spectrum", un:6, vl:4464},
-      {nm:"Full Spectrum 20% + 0,2% THC", un:5, vl:2231}
-    ],
+    carrinhoItens: 19, carrinhoValor: 10663,
+    carrinhoB2C: {itens:18, valor:10154, produtos:[
+      {nm:"Full Spectrum 1:1 CBD/THC", un:9, vl:4933},
+      {nm:"Full Spectrum 20% + 0,2% THC", un:4, vl:1795},
+      {nm:"Protocolo de Dor — Full Spectrum", un:3, vl:2111},
+      {nm:"Full Spectrum 20:1 · 1% THC", un:2, vl:1316}
+    ]},
+    carrinhoB2B: {itens:1, valor:509, produtos:[
+      {nm:"Full Spectrum 20% + 0,2% THC", un:1, vl:509}
+    ]},
     status: [
       {nm:"Análise Anvisa", n:8, color:"var(--amber)"},
       {nm:"Aprovado", n:3, color:"var(--g2)"},
@@ -751,12 +754,13 @@ function viewB2C(state){
       <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (69% das unidades). Destaque: <b>2 Protocolos de Dor</b> viraram <span class="hl">venda paga</span> — além dos 9 doados pelo projeto.</div></div>
     </div></div>
   </div>
-  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🛒 Carrinhos em aberto · produtos</h3><div class="ph-sub">${b.carrinhos} carrinhos · ${b.carrinhoItens} unidades · ${brl(b.carrinhoValor)} em potencial</div></div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🛒 Carrinhos em aberto · por canal</h3><div class="ph-sub">${b.carrinhos} carrinhos · ${b.carrinhoItens} unidades · ${brl(b.carrinhoValor)} em potencial</div></div>
     <span class="tag" style="background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-mid)">oportunidades a converter</span></div>
     <div class="pb">
-      <div class="prod-list">${b.carrinhoProdutos.map(p=>{const cm=Math.max(...b.carrinhoProdutos.map(x=>x.un));return `<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.vl)}</span></div>
-        <div class="prod-bg"><div class="prod-fill" style="width:${p.un/cm*100}%;background:linear-gradient(90deg,var(--amber),#E0A93A)"><span>${p.un}</span></div></div></div>`;}).join('')}</div>
-      <div class="insight warn"><div class="ico">💰</div><div class="body">São <b>${b.carrinhos} carrinhos abertos</b> com <span class="hl">${b.carrinhoItens} frascos</span> (R$ ${b.carrinhoValor.toLocaleString("pt-BR")} em potencial). O <b>1:1 CBD/THC</b> lidera a demanda represada — foco de recuperação.</div></div>
+      ${(()=>{const cartCol=(t,badge,d)=>{const cm=Math.max(...d.produtos.map(x=>x.un));return `<div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><div style="font-size:13px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:8px">${t} <span style="font-size:9.5px;font-weight:800;padding:2px 8px;border-radius:6px;background:${badge}">${d.itens} un</span></div><div style="font-size:12px;font-weight:700;color:var(--g2)">${brl(d.valor)}</div></div>
+        <div class="prod-list">${d.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.vl)}</span></div><div class="prod-bg"><div class="prod-fill" style="width:${p.un/cm*100}%;background:linear-gradient(90deg,var(--amber),#E0A93A)"><span>${p.un}</span></div></div></div>`).join('')}</div></div>`;};
+        return `<div class="cols-2" style="align-items:start">${cartCol('🛒 B2C · consumidor','var(--amber-light);color:var(--amber)',b.carrinhoB2C)}${cartCol('🏢 B2B · representante','var(--blue-light);color:var(--blue)',b.carrinhoB2B)}</div>`;})()}
+      <div class="insight warn"><div class="ico">💰</div><div class="body">São <b>${b.carrinhos} carrinhos abertos</b> (R$ ${b.carrinhoValor.toLocaleString("pt-BR")} em potencial): <span class="hl">${b.carrinhoB2C.itens} B2C</span> + ${b.carrinhoB2B.itens} B2B. O <b>1:1 CBD/THC</b> lidera a demanda represada no B2C — foco de recuperação.</div></div>
     </div></div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>📦 Status dos pedidos B2C</h3><div class="ph-sub">estágio de cada pedido no fluxo Anvisa → entrega</div></div></div>
     <div class="pb"><div class="seg">
