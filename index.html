@@ -409,10 +409,10 @@ const DATA = {
     ]
   },
   pacientes: {
-    prescricoes: 20, aceitos: 12, iniciados: 0, declinados: 0,
+    prescricoes: 20, aceitos: 13, iniciados: 0, entregues: 1, declinados: 0,
     status: [
-      {nm:"Termo assinado", n:12, color:"var(--g2)"},
-      {nm:"Aguardando termo", n:8, color:"var(--amber)"}
+      {nm:"Termo assinado", n:13, color:"var(--g2)"},
+      {nm:"Aguardando termo", n:7, color:"var(--amber)"}
     ],
     doacoesProtocolos: 15, doacoesFrascos: 26,
     doacoes: [
@@ -427,19 +427,18 @@ const DATA = {
       {nm:"Rosete Galvão de Paula", rs:"Dra. Danielle Saldanha · 30/06", frascos:2},
       {nm:"Debora dos Santos", rs:"Dra. Gabriela Caponero · 30/06", frascos:2},
       {nm:"Laura Beatriz Kracker Martucci", rs:"Dra. Vanessa Ota · 02/07", frascos:2},
-      {nm:"+ 4 protocolos adicionais", rs:"processados na semana", frascos:8}
+      {nm:"+ 2 protocolos adicionais", rs:"processados na semana", frascos:4}
     ],
     jornada: [
       {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:20, state:"done"},
-      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:12, state:"active"},
-      {t:"Pedido entregue", d:"Entrega rastreada via Memphis", n:0, state:"todo"},
+      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:13, state:"done"},
+      {t:"Pedido entregue", d:"Entrega rastreada via Memphis", n:1, state:"active"},
       {t:"Cuida ativado", d:"1º contato do acompanhamento clínico", n:0, state:"todo"},
       {t:"Check-in D6 / D10", d:"Coleta de dados → RWE gerado", n:0, state:"todo"}
     ],
     aguardando: [
       {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane · 02/06"},
       {nm:"Célia Regina de Mello", rs:"Dr. Denis Noronha · 10/06"},
-      {nm:"Ariana Jéssica Lopes Rios", rs:"Dra. Thayane · 13/06"},
       {nm:"Valtrudes Diel", rs:"Dra. Rafaela Bock · 12/06"},
       {nm:"Giselle Mamede Tenório", rs:"Dra. Danielle Saldanha · 18/06"},
       {nm:"Mona Liza Santana S. R. Macedo", rs:"Dra. Ana Paula Camargo · 23/06"},
@@ -458,7 +457,8 @@ const DATA = {
       {nm:"Jaciel Gomes da Silva", rs:"Dr. Ygor Lopes Carvalho · 30/06"},
       {nm:"Debora dos Santos", rs:"Dra. Gabriela Caponero · 30/06"},
       {nm:"Maria Aparecida Provazzi Roberto", rs:"Dra. Gabriela Caponero · 01/07"},
-      {nm:"Laura Beatriz Kracker Martucci", rs:"Dra. Vanessa Ota · 02/07"}
+      {nm:"Laura Beatriz Kracker Martucci", rs:"Dra. Vanessa Ota · 02/07"},
+      {nm:"Ariana Jéssica Lopes Rios", rs:"Dra. Thayane Guimarães · 05/07"}
     ],
     escalas: [
       {t:"Dor (0–10)", d:"Δ vs. basal por paciente"},
@@ -486,8 +486,7 @@ const DATA = {
       {nm:"Aguardando Documentos", n:6, color:"var(--red)"},
       {nm:"Conferência", n:2, color:"var(--blue)"},
       {nm:"Entregue", n:1, color:"var(--g3)"},
-      {nm:"Em trânsito", n:1, color:"var(--g4)"},
-      {nm:"Aguardando estoque", n:1, color:"var(--violet)"}
+      {nm:"Em trânsito", n:1, color:"var(--g4)"}
     ],
     mes: {
       mai: {gmv:1247, desconto:45, nmv:1202, frascos:3},
@@ -620,7 +619,7 @@ function viewOverview(){
       </div></div>
     <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">prescrição → Cuida</div></div></div>
       <div class="pb">${funnel(p.jornada.slice(0,3).map((s,i)=>({lbl:s.t,val:s.n,color:['var(--g0)','var(--g2)','var(--g3)'][i]})),{unit:'pacientes'})}
-      <div class="insight viol"><div class="ico">📈</div><div class="body"><b>20 prescrições</b> e <span class="hl">12 já assinaram o termo</span> (era 10). A esteira acelerou — o próximo marco é o 1º paciente entrar no Cuida.</div></div>
+      <div class="insight viol"><div class="ico">📦</div><div class="body"><b>20 prescrições</b>, <span class="hl">13 assinaram o termo</span> e o <b>1º pedido já foi entregue!</b> A esteira girou até o fim — o próximo marco é esse paciente entrar no Cuida.</div></div>
       </div></div>
   </div>`;
 }
