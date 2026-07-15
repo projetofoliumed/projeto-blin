@@ -419,7 +419,7 @@ const DATA = {
     ]
   },
   pacientes: {
-    prescricoes: 29, aceitos: 19, iniciados: 3, entregues: 1, declinados: 0,
+    prescricoes: 29, aceitos: 19, iniciados: 3, cuidaAtivo: 1, entregues: 3, entreguesB2C: 1, declinados: 0,
     status: [
       {nm:"Termo assinado", n:19, color:"var(--g2)"},
       {nm:"Aguardando termo", n:10, color:"var(--amber)"}
@@ -443,14 +443,14 @@ const DATA = {
     jornada: [
       {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:29, state:"done"},
       {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:19, state:"done"},
-      {t:"Pedido entregue", d:"Entrega rastreada via Memphis", n:1, state:"done"},
-      {t:"Cuida ativado", d:"1º contato do acompanhamento clínico", n:3, state:"active"},
+      {t:"Pedido entregue", d:"Entrega rastreada via Memphis (+1 no B2C, fora do projeto)", n:3, state:"done"},
+      {t:"Cuida ativado", d:"1º contato do acompanhamento — 1 já ativo", n:3, state:"active"},
       {t:"Check-in D6 / D10", d:"Coleta de dados → RWE gerado", n:0, state:"todo"}
     ],
     cuidaList: [
-      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock"},
-      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · entregue ✅"},
-      {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock"}
+      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · entregue ✅ · ativo 🟢"},
+      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · entregue ✅"},
+      {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · entregue ✅"}
     ],
     aguardando: [
       {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane · 02/06"},
@@ -638,7 +638,7 @@ function viewOverview(){
     <div class="hero"><div class="hero-lbl">📝 Prescrições</div><div class="hero-val">${m.prescricoes}</div>
       <div class="hero-sub">${m.comPrescricao} de ${m.aceitos} aceitos prescreveram</div></div>
     <div class="hero"><div class="hero-lbl">🌱 Pacientes no Cuida</div><div class="hero-val">${p.iniciados}</div>
-      <div class="hero-sub">${p.aceitos} aceitaram · ${p.aguardando.length} pendentes</div></div>
+      <div class="hero-sub">${p.entregues} entregues · ${p.cuidaAtivo} já ativo</div></div>
   </div>
   <div class="cols-12">
     <div class="panel"><div class="ph"><div><h3>🩺 Funil de médicos</h3><div class="ph-sub">resellers do projeto</div></div></div>
@@ -647,7 +647,7 @@ function viewOverview(){
       </div></div>
     <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">prescrição → Cuida</div></div></div>
       <div class="pb">${funnel(p.jornada.slice(0,3).map((s,i)=>({lbl:s.t,val:s.n,color:['var(--g0)','var(--g2)','var(--g3)'][i]})),{unit:'pacientes'})}
-      <div class="insight viol"><div class="ico">🌱</div><div class="body">Marco histórico: <span class="hl">3 pacientes entraram no Cannect Cuida!</span> A coleta de RWE começou. Já são <b>29 prescrições</b>, 19 termos assinados e 1 entregue — a esteira clínica está girando.</div></div>
+      <div class="insight viol"><div class="ico">🌱</div><div class="body">Marco histórico: <span class="hl">3 pacientes receberam o produto e entraram no Cuida</span> (1 já ativo). A coleta de RWE começou! São <b>29 prescrições</b>, 19 termos e 3 entregas no projeto (+1 no B2C, à parte).</div></div>
       </div></div>
   </div>`;
 }
@@ -745,7 +745,7 @@ function viewPacientes(){
       </div></div></div>
     <div class="panel"><div class="ph"><div><h3>📌 Casos em andamento</h3><div class="ph-sub">Cuida, aceitos e pendentes</div></div></div>
       <div class="pb">
-        ${listSec(`🌱 ${p.iniciados} no Cannect Cuida`,'muted',p.cuidaList,true,d=>`<div class="li" style="background:var(--violet-light)"><span class="nm" style="color:var(--violet)">${d.nm}</span><span class="rs" style="color:var(--violet);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
+        ${listSec(`🌱 ${p.iniciados} no Cannect Cuida (entregues · ${p.cuidaAtivo} ativo)`,'muted',p.cuidaList,true,d=>`<div class="li" style="background:var(--violet-light)"><span class="nm" style="color:var(--violet)">${d.nm}</span><span class="rs" style="color:var(--violet);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
         ${listSec(`✅ ${p.aceitos} assinaram o termo`,'muted',p.convertidos,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="rs" style="color:var(--g2);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
         ${listSec(`⏳ ${p.aguardando.length} aguardando termo`,'amber',p.aguardando,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
       </div></div>
