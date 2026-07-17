@@ -556,7 +556,8 @@ const DATA = {
       {nm:"Paraná (PR)", n:2, color:"var(--blue)"},
       {nm:"Santa Catarina (SC)", n:1, color:"var(--g4)"},
       {nm:"Bahia (BA)", n:1, color:"var(--amber)"},
-      {nm:"Tocantins (TO)", n:1, color:"var(--violet)"}
+      {nm:"Tocantins (TO)", n:1, color:"var(--violet)"},
+      {nm:"Não informado", n:1, color:"var(--ink4)"}
     ]
   }
 };
@@ -805,7 +806,7 @@ function viewB2C(state){
     </div></div></div>
   <div class="hero-strip">
     <div class="hero"><div class="hero-lbl">📦 Frascos vendidos</div><div class="hero-val sm">${b.frascos}</div><div class="hero-sub">${b.pedidos} pedidos pagos</div></div>
-    <div class="hero"><div class="hero-lbl">📦 Itens no checkout</div><div class="hero-val sm">${b.carrinhoItens}</div><div class="hero-sub">vendas + doações (Recipe)</div></div>
+    <div class="hero"><div class="hero-lbl">🎫 Ticket médio</div><div class="hero-val sm">${brl(b.nmv/b.pedidos)}</div><div class="hero-sub">NMV por pedido pago</div></div>
     <div class="hero"><div class="hero-lbl">👨‍⚕️ Médicos únicos</div><div class="hero-val sm">${b.medicosUnicos}</div><div class="hero-sub">prescritores</div></div>
     <div class="hero"><div class="hero-lbl">🧑 Pacientes únicos</div><div class="hero-val sm">${b.pacientesUnicos}</div><div class="hero-sub">compradores</div></div>
   </div>
@@ -823,17 +824,9 @@ function viewB2C(state){
     <div class="panel"><div class="ph"><h3>🧪 Mix de produtos</h3><div class="ph-sub">por unidade · NMV</div></div><div class="pb">
       <div class="prod-list">${b.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.nmv)} NMV</span></div>
         <div class="prod-bg"><div class="prod-fill" style="width:${p.un/prodMax*100}%"><span>${pct(p.un,b.frascos)}%</span></div></div></div>`).join('')}</div>
-      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (${pct(9,b.frascos)}% das unidades vendidas). Destaque: <b>2 Protocolos de Dor</b> viraram <span class="hl">venda paga</span> — além dos ${DATA.pacientes.doacoesProtocolos} doados pelo projeto.</div></div>
+      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (${pct(9,b.frascos)}% das unidades vendidas). Destaque: <b>2 Protocolos de Dor</b> viraram <span class="hl">venda paga</span> no período.</div></div>
     </div></div>
   </div>
-  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🛒 Composição do checkout B2C</h3><div class="ph-sub">${b.carrinhos} pedidos · ${b.carrinhoItens} itens · ${brl(b.carrinhoValor)} GMV bruto</div></div>
-    <span class="tag" style="background:var(--g-light);color:var(--g2);border:1px solid var(--g-mid)">vendas + doações</span></div>
-    <div class="pb">
-      ${(()=>{const cartCol=(t,badge,d)=>{const cm=Math.max(...d.produtos.map(x=>x.un));return `<div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><div style="font-size:13px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:8px">${t} <span style="font-size:9.5px;font-weight:800;padding:2px 8px;border-radius:6px;background:${badge}">${d.itens} un</span></div><div style="font-size:12px;font-weight:700;color:var(--g2)">${brl(d.valor)}</div></div>
-        <div class="prod-list">${d.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.vl)}</span></div><div class="prod-bg"><div class="prod-fill" style="width:${p.un/cm*100}%;background:linear-gradient(90deg,var(--g2),var(--g3))"><span>${p.un}</span></div></div></div>`).join('')}</div></div>`;};
-        return cartCol('🛒 Todos os pedidos B2C','var(--g-light);color:var(--g2)',b.carrinhoB2C);})()}
-      <div class="insight"><div class="ico">🎁</div><div class="body">Dos <b>${b.carrinhoItens} itens no checkout</b>, <span class="hl">25 são Protocolos de Dor doados</span> pelo projeto (NMV zero) e ${b.frascos} são vendas pagas. O <b>Full Spectrum 0,2%</b> lidera as vendas efetivas.</div></div>
-    </div></div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>📦 Status dos pedidos B2C</h3><div class="ph-sub">estágio de cada pedido no fluxo Anvisa → entrega</div></div></div>
     <div class="pb"><div class="seg">
       ${(()=>{const smax=Math.max(...b.status.map(s=>s.n)),stot=b.status.reduce((a,s)=>a+s.n,0);return b.status.map(s=>`<div class="seg-row"><div class="seg-lbl" style="width:180px">${s.nm}</div><div class="seg-wrap"><div class="seg-bar" style="width:${s.n/smax*100}%;background:${s.color}"></div></div><div class="seg-n">${s.n}</div></div>`).join('');})()}
