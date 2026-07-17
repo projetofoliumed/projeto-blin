@@ -302,46 +302,53 @@ body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--
 <body>
 <div id="app"></div>
 <script>
-// ===================== DATA (from xlsx, updated 14/07/2026) =====================
+// ===================== DATA (from xlsx, updated 17/07/2026) =====================
 const DATA = {
-  updated: "14/07/2026",
+  updated: "17/07/2026",
   goals: {
-    medicos:   {atual: 27, meta: 250,  lbl:"Médicos ativos", icon:"👨‍⚕️"},
-    pacientes: {atual: 3,  meta: 750,  lbl:"Pacientes iniciados", icon:"🧑‍🤝‍🧑"},
+    medicos:   {atual: 30, meta: 250,  lbl:"Médicos ativos", icon:"👨‍⚕️"},
+    pacientes: {atual: 4,  meta: 750,  lbl:"Pacientes iniciados", icon:"🧑‍🤝‍🧑"},
     frascos:   {atual: 46, meta: 1500, lbl:"Frascos doados", icon:"📦"},
     ratio:     {atual: 0,  meta: 3,    lbl:"Pacientes / médico", icon:"📊"}
   },
   medicos: {
-    total: 424, convidados: 19, mvp: 19, aceitos: 27, declinados: 11, pendentes: 2, lifecycle: 2,
-    fila: 384, comPrescricao: 15, prescricoes: 29, repsTotal: 45,
-    onda1: 223, onda2: 182,
+    total: 427, convidados: 427, mvp: 19, aceitos: 30, declinados: 11, pendentes: 1, lifecycle: 2,
+    fila: 385, comPrescricao: 17, prescricoes: 31, repsTotal: 53, perdidos: 73,
+    onda1: 226, onda2: 182,
+    ondas: {
+      mvp:   {nm:"MVP",     sel:19,  aceit:11, presc:7, recus:8, aguard:0,   interno:19,  reps:0,  color:"var(--g2)"},
+      onda1: {nm:"1ª onda", sel:226, aceit:9,  presc:5, recus:1, aguard:216, interno:181, reps:45, color:"var(--violet)"},
+      onda2: {nm:"2ª onda", sel:182, aceit:10, presc:5, recus:2, aguard:170, interno:174, reps:8,  color:"var(--blue)"}
+    },
     funil: [
-      {lbl:"Convidados MVP", val:19, color:"var(--g0)"},
-      {lbl:"Aceitaram termo", val:27, color:"var(--g2)"},
-      {lbl:"Prescreveram", val:15, color:"var(--g3)"}
+      {lbl:"Convidados (total)", val:427, color:"var(--g0)"},
+      {lbl:"Aceitaram termo", val:30, color:"var(--g2)"},
+      {lbl:"Prescreveram", val:17, color:"var(--g3)"}
     ],
     status: [
-      {nm:"Termo assinado", n:27, color:"var(--g2)"},
-      {nm:"Termo enviado", n:2, color:"var(--amber)"},
+      {nm:"Termo assinado", n:30, color:"var(--g2)"},
+      {nm:"Termo enviado", n:1, color:"var(--amber)"},
       {nm:"Recusado", n:11, color:"var(--red)"},
-      {nm:"Em contato (prospecção)", n:384, color:"var(--ink4)"}
+      {nm:"Em prospecção", n:385, color:"var(--ink4)"}
     ],
     indicadores: [
       {nm:"Rafaela Bock", esp:"Med. Família", prescritos:7, aceitos:5},
       {nm:"Gabriela Caponero", esp:"Ortopedia", prescritos:4, aceitos:4},
       {nm:"Aline Maynart Godoi", esp:"Generalista", prescritos:3, aceitos:1},
-      {nm:"Thayane Guimarães", esp:"Generalista", prescritos:2, aceitos:1},
       {nm:"Danielle Saldanha", esp:"Geriatria", prescritos:2, aceitos:2},
+      {nm:"Thayane Guimarães", esp:"Generalista", prescritos:2, aceitos:1},
       {nm:"Ana Paula Camargo", esp:"Reumatologia", prescritos:2, aceitos:0},
-      {nm:"Denis Noronha", esp:"Generalista", prescritos:1, aceitos:0},
       {nm:"Maria Julia Busato", esp:"Reumatologia", prescritos:1, aceitos:1},
       {nm:"Michele Ouriques", esp:"Geriatria", prescritos:1, aceitos:1},
       {nm:"Ygor Lopes Carvalho", esp:"Generalista", prescritos:1, aceitos:1},
       {nm:"Vanessa Ota Nogueira", esp:"Otorrino", prescritos:1, aceitos:1},
       {nm:"Araceli Ribeiro Campos", esp:"Generalista", prescritos:1, aceitos:1},
       {nm:"Mônica Airoldi", esp:"Generalista", prescritos:1, aceitos:1},
+      {nm:"Denis Noronha", esp:"Generalista", prescritos:1, aceitos:0},
       {nm:"Marcia Regina Nobres", esp:"Anestesio", prescritos:1, aceitos:0},
-      {nm:"Frederico Menezes Gomides", esp:"Generalista", prescritos:1, aceitos:0}
+      {nm:"Frederico Menezes Gomides", esp:"Generalista", prescritos:1, aceitos:0},
+      {nm:"Ricardo Freire Gurgel", esp:"Generalista", prescritos:1, aceitos:0},
+      {nm:"Caetano Almeida Silva", esp:"Generalista", prescritos:1, aceitos:0}
     ],
     aceitosList: [
       {nm:"Ana Paula Camargo", tag:"MVP · Reumatologia"},
@@ -385,8 +392,7 @@ const DATA = {
       {nm:"Maressa Barboza Eiras", rs:"declinou"}
     ],
     pendentesList: [
-      {nm:"Valeska Beatrice Ferreira", rs:"termo enviado"},
-      {nm:"Ricardo Freire Gurgel", rs:"termo enviado"}
+      {nm:"Valeska Beatrice Ferreira", rs:"termo enviado · aguarda assinatura"}
     ],
     onda1List: [{"nm":"Adriano Ribeiro Medeiros","tag":"Interno"},{"nm":"Alexandre Aguiar Cardoso","tag":"Interno"},{"nm":"Alexandre Assuane Duarte","tag":"Interno"},{"nm":"Alexandre Massao Yoshizumi","tag":"Interno"},{"nm":"Aline Paiva Noble","tag":"Interno"},{"nm":"Ana Paula Bazilio","tag":"Interno"},{"nm":"Ana Paula Ferreira Lima","tag":"Interno"},{"nm":"André Luiz Basso","tag":"Interno"},{"nm":"Andreia Pereira Mendes","tag":"Interno"},{"nm":"Anna Karla Rocha Santana","tag":"Interno"},{"nm":"Antonio Candido Barone Neto","tag":"Interno"},{"nm":"Antonio Matosinhos Filho","tag":"Interno"},{"nm":"Arailton Francisco De Oliveira Neto","tag":"Interno"},{"nm":"Barbara Eliane Matos","tag":"Interno"},{"nm":"Bruno Paladini Camargo","tag":"Interno"},{"nm":"Caio Macedo Athayde Bonadio","tag":"Interno"},{"nm":"Camila Castelo Branco Pupe","tag":"Interno"},{"nm":"Cintia Pimentel Sayd","tag":"Interno"},{"nm":"Corina dos Reis Sepeda","tag":"Interno"},{"nm":"Daniele Tondolo Martins","tag":"Interno"},{"nm":"Eduardo Cavalheiro Fontes","tag":"Interno"},{"nm":"Douglas Henrique Pereira Damasceno","tag":"Interno"},{"nm":"Eduardo Aliende Perin","tag":"Interno"},{"nm":"Emanuele Miranda","tag":"Interno"},{"nm":"Emilio Figueiredo Netto","tag":"Interno"},{"nm":"Fabio Pinheiro Rocha Junior","tag":"Interno"},{"nm":"Felipe Augusto Biccas Mourao","tag":"Interno"},{"nm":"Felipe Chioro Gonzalez","tag":"Interno"},{"nm":"Felipe Renato Nadai","tag":"Interno"},{"nm":"Fernanda Castro Dantas","tag":"Interno"},{"nm":"Fernando de Lara Nunes Siqueira","tag":"Interno"},{"nm":"Gabriel Alfredo Krauss","tag":"Interno"},{"nm":"Gustavo Coutinho Medeiros de Andrade","tag":"Interno"},{"nm":"Iara Andrade de Souza","tag":"Interno"},{"nm":"Janaissa Mara Neto Diniz Ribeiro","tag":"Interno"},{"nm":"Jean Castro Cunha","tag":"Interno"},{"nm":"Jimmy Fardin Rocha","tag":"Interno"},{"nm":"Joaquim Maia de Toledo Piza","tag":"Interno"},{"nm":"José Wilson Veras Mourão Neto","tag":"Interno"},{"nm":"Julia Anon Brasolin","tag":"Interno"},{"nm":"Juliana de Abreu Mesquita","tag":"Interno"},{"nm":"Juliana Paiva Gouvêa Sicoli","tag":"Interno"},{"nm":"Karla Maria Arana","tag":"Interno"},{"nm":"Lenina Bittencourt","tag":"Interno"},{"nm":"Leonardo Tomasella","tag":"Interno"},{"nm":"Letierre Duarte Pereira","tag":"Interno"},{"nm":"Lislie Schoenstatt Abram Oliveira Gomes Bergantin","tag":"Interno"},{"nm":"Livia Lobo da Silva Costa Henrique","tag":"Interno"},{"nm":"Lorenza Paceau de Oliveira Preto","tag":"Interno"},{"nm":"Marcos Jose de Mello Prandine","tag":"Interno"},{"nm":"Maria Isabel Andrade Lourencao Nestarez","tag":"Interno"},{"nm":"Maria Julia Woelffel Busato","tag":"Interno"},{"nm":"Marina Vicente de Souza","tag":"Interno"},{"nm":"Marlon Donadon","tag":"Interno"},{"nm":"Matheus Abdalla de Souza","tag":"Interno"},{"nm":"Matheus Bernal Estaregui Bisam","tag":"Interno"},{"nm":"Mayara Thais Rover","tag":"Interno"},{"nm":"Miriam Gondim Meira Tibo","tag":"Interno"},{"nm":"Orlando Merli Borges","tag":"Interno"},{"nm":"Paulo Henrique Migliari de Carvalho","tag":"Interno"},{"nm":"Paulo Vítor Dos Santos","tag":"Interno"},{"nm":"Pedro Ernesto Pulcherio Filho","tag":"Interno"},{"nm":"Rodrigo Croce Geraldo","tag":"Interno"},{"nm":"Rodrigo Pedroso Reis","tag":"Interno"},{"nm":"Sabrina Favarin Martins Marcelino","tag":"Interno"},{"nm":"Stella Regina Carletti","tag":"Interno"},{"nm":"Tatiana Maluf Boszczowski","tag":"Interno"},{"nm":"Thatiane Fernandes da Silva","tag":"Interno"},{"nm":"Thiago Luccas Correa dos Santos Gomes","tag":"Interno"},{"nm":"Thiago Napolitano","tag":"Interno"},{"nm":"Thiago Xavier Correa","tag":"Interno"},{"nm":"Tulio Siano Rossini","tag":"Interno"},{"nm":"Valeria Lacks","tag":"Interno"},{"nm":"Virginia Campagnaro Santi","tag":"Interno"},{"nm":"Livia Ferreira Martinic","tag":"Danieli"},{"nm":"Rafael Vilano Avelar","tag":"Danieli"},{"nm":"Gervásio D´Araujo da Cunha Gonçalves Filho","tag":"Danieli"},{"nm":"Lara Sepulveda De Andrade Freire","tag":"Filipe"},{"nm":"Alan de Castro Andrade","tag":"Filipe"},{"nm":"Ana Paula Bittencourt Marques Lisboa Peixoto","tag":"Filipe"},{"nm":"Kenia Guinar Silveira","tag":"Filipe"},{"nm":"Kassia Amaral dos Santos","tag":"Filipe"},{"nm":"Tathiane Karen Herculano Barbary","tag":"Gabriela"},{"nm":"Ana Rachel de Oliveira Vermejo","tag":"Gabriela"},{"nm":"Romulo da Costa Torres","tag":"Gabriela"},{"nm":"Vitor Nunes Rodrigues da Silva","tag":"Gabriela"},{"nm":"José Luiz Granieri","tag":"Gabriela"},{"nm":"Fábio Landel Alysson Araújo Franklin","tag":"Gustavo"},{"nm":"Plinio Miguel Loguercio Quinette","tag":"Gustavo"},{"nm":"Arthur Felipe Lauf Melotti","tag":"Gustavo"},{"nm":"Ricardo Almeida Alencar","tag":"Jéssica"},{"nm":"Riana Rodrigues Emilio Lopes","tag":"Jéssica"},{"nm":"Juliana Valões","tag":"Jéssica"},{"nm":"Nancy Huang","tag":"Jéssica"},{"nm":"Anderson Mikalauskas","tag":"Jéssica"},{"nm":"Caetano Almeida Silva","tag":"Luca"},{"nm":"Matheus Porto De Farias Alves","tag":"Luca"},{"nm":"Leonardo Tonello Romero","tag":"Luca"},{"nm":"Vanessa Ota Nogueira","tag":"Luca"},{"nm":"Esmar Rodrigues Arantes Filho","tag":"Luca"},{"nm":"Luis Wanderlei Correia De Queiroz Junior","tag":"Maysa"},{"nm":"Filipe Lins Linhares De Sousa","tag":"Maysa"},{"nm":"Ana Paula Chibeni Fernandez","tag":"Maysa"},{"nm":"Beatriz Jalbut Jacob","tag":"Maysa"},{"nm":"Carolina Marques Lopes","tag":"Maysa"},{"nm":"Yussef Aiex Abdu Neme Abrahim","tag":"Mikaelle"},{"nm":"Filipe Terra Curupaná","tag":"Mikaelle"},{"nm":"Leandro Losada Medeiros","tag":"Mikaelle"},{"nm":"Marcos Adams","tag":"Mikaelle"},{"nm":"Luiz Paulo Neto Sarmento","tag":"Mikaelle"},{"nm":"Fabio Willians Rossi Santana","tag":"Renata"},{"nm":"Evelyn Esteres Oliveira","tag":"Renata"},{"nm":"Lucilia de Brito Tavares","tag":"Renata"},{"nm":"Thiago da Cunha Westmann","tag":"Renata"},{"nm":"Lais Patricio Vieira","tag":"Renata"}],
     especialidade: [
@@ -400,31 +406,32 @@ const DATA = {
       {nm:"Ginecologia", n:15},
       {nm:"Med. Física/Reab.", n:10}
     ],
-    onda1Total: 223, onda2Total: 182, onda1Interno: 181, onda1Reps: 42,
+    onda1Total: 226, onda2Total: 182, onda1Interno: 181, onda1Reps: 45,
     origem: [
       {nm:"Interno", n:374, color:"var(--g2)"},
-      {nm:"Reps (10)", n:50, color:"var(--violet)"}
+      {nm:"Reps (11)", n:53, color:"var(--violet)"}
     ],
     reps: [
       {nm:"Renata", indicados:7, av:"R", color:"var(--blue)"},
       {nm:"Mikaelle", indicados:6, av:"M", color:"var(--violet)"},
       {nm:"Maysa", indicados:6, av:"M", color:"var(--g2)"},
+      {nm:"Gustavo", indicados:6, av:"G", color:"var(--g3)"},
       {nm:"Luca", indicados:5, av:"L", color:"var(--amber)"},
-      {nm:"Gustavo", indicados:5, av:"G", color:"var(--g3)"},
       {nm:"Filipe", indicados:5, av:"F", color:"var(--violet)"},
       {nm:"Gabriela", indicados:5, av:"G", color:"var(--blue)"},
       {nm:"Jéssica", indicados:5, av:"J", color:"var(--g3)"},
+      {nm:"Danieli", indicados:4, av:"D", color:"var(--ink3)"},
       {nm:"Leili", indicados:3, av:"L", color:"var(--ink3)"},
-      {nm:"Danieli", indicados:3, av:"D", color:"var(--ink3)"}
+      {nm:"Mariana", indicados:1, av:"M", color:"var(--ink3)"}
     ]
   },
   pacientes: {
-    prescricoes: 29, aceitos: 19, iniciados: 3, cuidaAtivo: 1, entregues: 3, entreguesB2C: 1, declinados: 0,
+    prescricoes: 31, aceitos: 19, iniciados: 4, cuidaAtivo: 4, entregues: 2, entreguesB2C: 3, declinados: 0,
     status: [
       {nm:"Termo assinado", n:19, color:"var(--g2)"},
-      {nm:"Aguardando termo", n:10, color:"var(--amber)"}
+      {nm:"Termo pendente", n:12, color:"var(--amber)"}
     ],
-    doacoesProtocolos: 25, doacoesFrascos: 46,
+    doacoesProtocolos: 23, doacoesFrascos: 46,
     doacoes: [
       {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · 10/06", frascos:2},
       {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · 16/06", frascos:2},
@@ -438,19 +445,29 @@ const DATA = {
       {nm:"Debora dos Santos", rs:"Dra. Gabriela Caponero · 30/06", frascos:2},
       {nm:"Laura Beatriz Kracker Martucci", rs:"Dra. Vanessa Ota · 02/07", frascos:2},
       {nm:"Ariana Jéssica Lopes Rios", rs:"Dra. Thayane · 05/07", frascos:2},
-      {nm:"+ 13 protocolos adicionais", rs:"processados na semana", frascos:22}
+      {nm:"+ 11 protocolos adicionais", rs:"processados no período", frascos:22}
     ],
     jornada: [
-      {t:"Prescrição enviada", d:"Médico indica o paciente no Assistente Cannect", n:29, state:"done"},
-      {t:"Termo assinado", d:"Paciente aceita e paga o frete", n:19, state:"done"},
-      {t:"Pedido entregue", d:"Entrega rastreada via Memphis (+1 no B2C, fora do projeto)", n:3, state:"done"},
-      {t:"Cuida ativado", d:"1º contato do acompanhamento — 1 já ativo", n:3, state:"active"},
-      {t:"Check-in D6 / D10", d:"Coleta de dados → RWE gerado", n:0, state:"todo"}
+      {t:"Termo assinado", d:"Paciente aceita, envia documentos e paga o frete — convertido", n:19, state:"done"},
+      {t:"Cuida ativado", d:"1º contato (D0/basal) do acompanhamento clínico", n:4, state:"active"},
+      {t:"Pedido entregue", d:"Entrega do produto rastreada via Memphis", n:2, state:"done"},
+      {t:"Check-in D6", d:"Reavaliação clínica no dia 6 de uso", n:0, state:"todo"},
+      {t:"Check-in D10", d:"Reavaliação no dia 10 → evidência (RWE) gerada", n:0, state:"todo"}
     ],
     cuidaList: [
-      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · entregue ✅ · ativo 🟢"},
-      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · entregue ✅"},
-      {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · entregue ✅"}
+      {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · D0 13/07 · entregue ✅"},
+      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · D0 13/07 · entregue ✅"},
+      {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · D0 14/07 · aguarda entrega"},
+      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · D0 16/07 · aguarda entrega"}
+    ],
+    escalasClinicas: [
+      {nm:"Saulo Birchler Boeck", med:"Dra. Rafaela Bock", contato:"D0 · 13/07", dor:7, sono:7, func:7, tol:"Moderada", ea:"Episódio de tontura de intensidade leve"},
+      {nm:"Maria Aparecida S. de Andrade", med:"Dra. Rafaela Bock", contato:"D0 · 13/07", dor:8, sono:null, func:null, tol:"—", ea:null},
+      {nm:"Nilson Fermiano de Assis", med:"Dra. Rafaela Bock", contato:"D0 · 14/07", dor:8, sono:8, func:8, tol:"Boa", ea:null},
+      {nm:"Ires Maria Grahl", med:"Dra. Rafaela Bock", contato:"D0 · 16/07", dor:8, sono:6, func:10, tol:"—", ea:null}
+    ],
+    observacoes: [
+      {nm:"Saulo Birchler Boeck", txt:"Tolerância moderada ao THC. Relatou episódio de tontura de intensidade leve no 1º contato (D0)."}
     ],
     aguardando: [
       {nm:"Edite Francisca dos Santos", rs:"Dra. Thayane · 02/06"},
@@ -462,13 +479,15 @@ const DATA = {
       {nm:"Maria Isabel Martins Marcondes", rs:"Dra. Ana Paula Camargo · 08/07"},
       {nm:"Sabrina Duarte Ribeiro", rs:"Dra. Marcia Regina Nobres · 09/07"},
       {nm:"Iraci Gomides Barroso", rs:"Dr. Frederico Menezes · 10/07"},
-      {nm:"José Otávio Amaral de Oliveira", rs:"Dra. Aline Maynart Godoi · 13/07"}
+      {nm:"José Otávio Amaral de Oliveira", rs:"Dra. Aline Maynart Godoi · 13/07"},
+      {nm:"Leandro Pereira da Costa", rs:"Dr. Ricardo Freire Gurgel · 16/07"},
+      {nm:"Helena Alves da Silva", rs:"Dr. Caetano Almeida Silva · 16/07"}
     ],
     convertidos: [
-      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · no Cuida 🌱"},
       {nm:"Saulo Birchler Boeck", rs:"Dra. Rafaela Bock · entregue ✅ · no Cuida 🌱"},
+      {nm:"Maria Aparecida Silva de Andrade", rs:"Dra. Rafaela Bock · entregue ✅ · no Cuida 🌱"},
       {nm:"Nilson Fermiano de Assis", rs:"Dra. Rafaela Bock · no Cuida 🌱"},
-      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · 16/06"},
+      {nm:"Ires Maria Grahl", rs:"Dra. Rafaela Bock · no Cuida 🌱"},
       {nm:"Eli Machado dos Santos", rs:"Dra. Rafaela Bock · 19/06"},
       {nm:"Tais Aparecida da Rosa", rs:"Dra. Maria Julia Busato · 27/06"},
       {nm:"Michele dos Santos Rodrigues", rs:"Dra. Michele Ouriques · 27/06"},
@@ -493,42 +512,38 @@ const DATA = {
     ]
   },
   b2c: {
-    medicosUnicos: 11, pacientesUnicos: 11, frascos: 16, pedidos: 11, carrinhos: 26,
-    gmv: 6684, desconto: 115, nmv: 6569, maiorPedido: 2094,
-    carrinhoItens: 30, carrinhoValor: 16533,
-    carrinhoB2C: {itens:29, valor:16024, produtos:[
-      {nm:"Full Spectrum 1:1 CBD/THC", un:16, vl:8578},
-      {nm:"Full Spectrum 20% + 0,2% THC", un:7, vl:3204},
-      {nm:"Protocolo de Dor — Full Spectrum", un:3, vl:2232},
-      {nm:"Full Spectrum 20:1 · 1% THC", un:3, vl:2010}
+    medicosUnicos: 14, pacientesUnicos: 14, frascos: 19, pedidos: 14, carrinhos: 37,
+    gmv: 8231, desconto: 170, nmv: 8061, maiorPedido: 2094,
+    carrinhoItens: 42, carrinhoValor: 22008,
+    carrinhoB2C: {itens:42, valor:22008, produtos:[
+      {nm:"Protocolo de Dor — Full Spectrum", un:25, vl:14975},
+      {nm:"Full Spectrum 20% + 0,2% THC", un:9, vl:3141},
+      {nm:"Full Spectrum 1:1 CBD/THC", un:5, vl:2245},
+      {nm:"Full Spectrum 20:1 · 1% THC", un:3, vl:1647}
     ]},
-    carrinhoB2B: {itens:1, valor:509, produtos:[
-      {nm:"Full Spectrum 20% + 0,2% THC", un:1, vl:509}
-    ]},
+    carrinhoB2B: {itens:0, valor:0, produtos:[]},
     status: [
-      {nm:"Em trânsito", n:13, color:"var(--g4)"},
-      {nm:"Aprovado", n:7, color:"var(--g2)"},
-      {nm:"Documentos Aprovados", n:4, color:"var(--g3)"},
-      {nm:"Aguardando Documentos", n:3, color:"var(--red)"},
-      {nm:"Aguardando Aprovação", n:3, color:"var(--amber)"},
-      {nm:"Aguardando Anvisa", n:3, color:"var(--violet)"},
-      {nm:"Entregue", n:1, color:"var(--g2)"},
-      {nm:"Análise Anvisa", n:1, color:"var(--amber)"},
-      {nm:"Conferência", n:1, color:"var(--blue)"}
+      {nm:"Pagamento aprovado", n:12, color:"var(--g2)"},
+      {nm:"Aguardando documentos", n:5, color:"var(--red)"},
+      {nm:"Aguardando aprovação", n:4, color:"var(--amber)"},
+      {nm:"Documentos aprovados", n:1, color:"var(--g3)"},
+      {nm:"Em trânsito", n:11, color:"var(--g4)"},
+      {nm:"Conferência", n:1, color:"var(--blue)"},
+      {nm:"Entregue", n:3, color:"var(--g1)"}
     ],
     mes: {
       mai: {gmv:1247, desconto:45, nmv:1202, frascos:3},
       jun: {gmv:4539, desconto:47, nmv:4492, frascos:11},
-      jul: {gmv:898,  desconto:22, nmv:876,  frascos:2}
+      jul: {gmv:2445, desconto:77, nmv:2368, frascos:5}
     },
     produtos: [
       {nm:"Full Spectrum 20% + 0,2% THC", un:9, nmv:3106},
-      {nm:"Full Spectrum 1:1 CBD/THC", un:4, nmv:1774},
-      {nm:"Protocolo de Dor — Full Spectrum", un:2, nmv:1168},
-      {nm:"Full Spectrum 20:1 · 1% THC", un:1, nmv:522}
+      {nm:"Full Spectrum 1:1 CBD/THC", un:5, nmv:2223},
+      {nm:"Full Spectrum 20:1 · 1% THC", un:3, nmv:1565},
+      {nm:"Protocolo de Dor — Full Spectrum", un:2, nmv:1168}
     ],
     ufPaciente: [
-      {nm:"São Paulo (SP)", n:5, color:"var(--g2)"},
+      {nm:"São Paulo (SP)", n:8, color:"var(--g2)"},
       {nm:"Paraná (PR)", n:2, color:"var(--g3)"},
       {nm:"Santa Catarina (SC)", n:1, color:"var(--blue)"},
       {nm:"Rio Grande do Sul (RS)", n:1, color:"var(--g4)"},
@@ -536,7 +551,7 @@ const DATA = {
       {nm:"Amazonas (AM)", n:1, color:"var(--amber)"}
     ],
     ufMedico: [
-      {nm:"São Paulo (SP)", n:4, color:"var(--g2)"},
+      {nm:"São Paulo (SP)", n:6, color:"var(--g2)"},
       {nm:"Rio de Janeiro (RJ)", n:2, color:"var(--g3)"},
       {nm:"Paraná (PR)", n:2, color:"var(--blue)"},
       {nm:"Santa Catarina (SC)", n:1, color:"var(--g4)"},
@@ -619,8 +634,7 @@ function goalsStrip(){
     <div class="goal-track"><div class="goal-fill" style="width:${Math.max(p,1)}%"></div></div>
     <div class="goal-pct"><span>Meta Fase 3 · Q4 2026</span><b>${p}%</b></div></div>`;};
   return `<div class="goals">
-    <div class="goals-top"><h3>🎯 Progresso rumo à meta final</h3>
-    <div class="ctx">Estamos no <b>MVP</b> · 1ª e 2ª onda em prospecção (<b>${DATA.medicos.fila}</b> médicos)</div></div>
+    <div class="goals-top"><h3>🎯 Progresso rumo à meta final</h3></div>
     <div class="goal-grid">${bar(g.medicos)}${bar(g.pacientes)}${bar(g.frascos)}${bar(g.ratio)}</div>
   </div>`;
 }
@@ -630,24 +644,24 @@ function viewOverview(){
   const gmvDelta=pct(b.mes.jun.gmv-b.mes.mai.gmv,b.mes.mai.gmv);
   return goalsStrip()+
   `<div class="hero-strip">
-    <div class="hero feat"><div class="hero-lbl">💰 NMV B2C acumulado</div>
-      <div class="hero-val">${brl(b.nmv)}</div><div class="hero-sub">líquido · GMV ${brl(b.gmv)} − ${brl(b.desconto)} desc.</div>
-      <span class="delta up">▲ +${gmvDelta}% GMV mai→jun</span>${spark([1202,3224])}</div>
+    <div class="hero feat"><div class="hero-lbl">💰 GMV B2C acumulado</div>
+      <div class="hero-val">${brl(b.gmv)}</div><div class="hero-sub">bruto · NMV ${brl(b.nmv)} líquido · ${brl(b.desconto)} desc.</div>
+      <span class="delta up">▲ +${gmvDelta}% GMV mai→jun</span>${spark([1247,4539])}</div>
     <div class="hero"><div class="hero-lbl">👨‍⚕️ Médicos aceitos</div><div class="hero-val">${m.aceitos}</div>
       <div class="hero-sub">${m.total} no funil · ${m.fila} em prospecção</div></div>
     <div class="hero"><div class="hero-lbl">📝 Prescrições</div><div class="hero-val">${m.prescricoes}</div>
       <div class="hero-sub">${m.comPrescricao} de ${m.aceitos} aceitos prescreveram</div></div>
     <div class="hero"><div class="hero-lbl">🌱 Pacientes no Cuida</div><div class="hero-val">${p.iniciados}</div>
-      <div class="hero-sub">${p.entregues} entregues · ${p.cuidaAtivo} já ativo</div></div>
+      <div class="hero-sub">${p.cuidaAtivo} ativos (D0) · ${p.entregues} entregues</div></div>
   </div>
   <div class="cols-12">
-    <div class="panel"><div class="ph"><div><h3>🩺 Funil de médicos</h3><div class="ph-sub">resellers do projeto</div></div></div>
+    <div class="panel"><div class="ph"><div><h3>🩺 Funil de médicos</h3><div class="ph-sub">consolidado · todas as ondas</div></div></div>
       <div class="pb">${funnel(m.funil,{unit:'médicos'})}
-      <div class="insight warn"><div class="ico">🚧</div><div class="body">Avanço: agora <b>15 médicos prescreveram</b> (era 11). Ainda assim, dos 27 que aceitaram, <span class="hl">12 nunca prescreveram</span> — foco em ativar a 1ª prescrição.</div></div>
+      <div class="insight warn"><div class="ico">🚧</div><div class="body">Avanço: agora <b>${m.comPrescricao} médicos prescreveram</b>. Ainda assim, dos ${m.aceitos} que aceitaram, <span class="hl">${m.aceitos-m.comPrescricao} nunca prescreveram</span> — foco em ativar a 1ª prescrição.</div></div>
       </div></div>
-    <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">prescrição → Cuida</div></div></div>
+    <div class="panel"><div class="ph"><div><h3>🧑‍🤝‍🧑 Funil de pacientes</h3><div class="ph-sub">termo → Cuida → entrega</div></div></div>
       <div class="pb">${funnel(p.jornada.slice(0,3).map((s,i)=>({lbl:s.t,val:s.n,color:['var(--g0)','var(--g2)','var(--g3)'][i]})),{unit:'pacientes'})}
-      <div class="insight viol"><div class="ico">🌱</div><div class="body">Marco histórico: <span class="hl">3 pacientes receberam o produto e entraram no Cuida</span> (1 já ativo). A coleta de RWE começou! São <b>29 prescrições</b>, 19 termos e 3 entregas no projeto (+1 no B2C, à parte).</div></div>
+      <div class="insight viol"><div class="ico">🌱</div><div class="body">Marco histórico: <span class="hl">${p.cuidaAtivo} pacientes já ativos no Cuida</span> com avaliação clínica basal (D0). A coleta de RWE começou! São <b>${p.aceitos} termos assinados</b> e ${p.entregues} entregas no projeto.</div></div>
       </div></div>
   </div>`;
 }
@@ -660,10 +674,10 @@ function viewMedicos(){
     <div><h2>Médicos</h2><p>Quem entrou no funil, de onde veio e quem ainda falta ativar</p></div></div>
   <div class="hero-strip" style="grid-template-columns:repeat(5,1fr)">
     <div class="hero"><div class="hero-lbl">No funil</div><div class="hero-val sm">${m.total}</div><div class="hero-sub">MVP + 1ª + 2ª onda</div></div>
-    <div class="hero"><div class="hero-lbl">Do MVP</div><div class="hero-val sm">${m.mvp}</div><div class="hero-sub">médicos abordados</div></div>
-    <div class="hero"><div class="hero-lbl">Aceitaram</div><div class="hero-val sm" style="color:var(--g2)">${m.aceitos}</div><div class="hero-sub">${pct(m.aceitos,m.convidados)}% do MVP</div></div>
-    <div class="hero"><div class="hero-lbl">Prescreveram</div><div class="hero-val sm" style="color:var(--g3)">${m.comPrescricao}</div><div class="hero-sub">${m.prescricoes} prescrições</div></div>
-    <div class="hero"><div class="hero-lbl">Em prospecção</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">1ª (${m.onda1}) + 2ª (${m.onda2}) onda</div></div>
+    ${['mvp','onda1','onda2'].map(k=>{const o=m.ondas[k];const mini=(v,l,c)=>`<div style="flex:1;text-align:center"><div style="font-size:19px;font-weight:800;letter-spacing:-.5px;color:${c}">${v}</div><div style="font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--ink3)">${l}</div></div>`;
+      return `<div class="hero"><div class="hero-lbl">${o.nm}</div>
+      <div style="display:flex;gap:4px;margin-top:8px">${mini(o.sel,'selec.','var(--ink)')}${mini(o.aceit,'termo','var(--g2)')}${mini(o.presc,'presc.','var(--g3)')}</div></div>`;}).join('')}
+    <div class="hero"><div class="hero-lbl">Em prospecção</div><div class="hero-val sm" style="color:var(--violet)">${m.fila}</div><div class="hero-sub">aguardando resposta</div></div>
   </div>
   <div class="cols-12">
     <div class="panel"><div class="ph"><div><h3>🥧 Status dos médicos</h3><div class="ph-sub">distribuição do funil</div></div></div>
@@ -677,11 +691,11 @@ function viewMedicos(){
       </div></div>
   </div>
   <div class="cols-12" style="margin-top:16px">
-    <div class="panel"><div class="ph"><h3>🔬 Mix de especialidades</h3><div class="ph-sub">MVP</div></div><div class="pb"><div class="seg">
+    <div class="panel"><div class="ph"><h3>🔬 Mix de especialidades</h3><div class="ph-sub">base do funil</div></div><div class="pb"><div class="seg">
       ${m.especialidade.map((e,i)=>`<div class="seg-row"><div class="seg-rank">${i+1}</div><div class="seg-lbl">${e.nm}</div>
         <div class="seg-wrap"><div class="seg-bar" style="width:${e.n/espMax*100}%;background:${espC[i]}"></div></div><div class="seg-n">${e.n}</div></div>`).join('')}
     </div></div></div>
-    <div class="panel"><div class="ph"><h3>🏅 Indicações por rep</h3><div class="ph-sub">${m.repsTotal} médicos na 1ª onda</div></div><div class="pb">
+    <div class="panel"><div class="ph"><h3>🏅 Indicações por rep</h3><div class="ph-sub">${m.repsTotal} médicos via representantes</div></div><div class="pb">
       ${m.reps.map(r=>`<div class="rep-card"><div class="rep-av" style="background:${r.color}">${r.av}</div>
         <div class="rep-info"><div class="rep-nm">${r.nm}</div><div class="rep-meta">indicações</div></div>
         <div class="rep-big">${r.indicados}</div></div>`).join('')}
@@ -694,23 +708,23 @@ function viewMedicos(){
       <div class="ind-row tot"><span class="ind-nm">Total</span><span class="ind-v">${m.prescricoes}</span><span class="ind-v" style="color:var(--g2)">${DATA.pacientes.aceitos}</span><span class="ind-v">${pct(DATA.pacientes.aceitos,m.prescricoes)}%</span></div>
     </div>
   </div></div>
-  <div class="panel span" style="margin-top:16px"><div class="ph"><h3>📋 Pipeline de status</h3><div class="ph-sub">quem precisa de ação</div></div><div class="pb">
-    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--g2);background:var(--g-light);border-radius:7px;padding:7px 12px;display:inline-block;margin-bottom:4px">⭐ MVP · ${m.convidados} médicos abordados</div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><h3>📋 Pipeline por onda</h3><div class="ph-sub">convidados · aceitaram · declinaram · pendentes · origem</div></div><div class="pb">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    ${['mvp','onda1','onda2'].map(k=>{const o=m.ondas[k];const row=(l,v,c)=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px;color:var(--ink2)">${l}</span><b style="font-size:13px;color:${c||'var(--ink)'}">${v}</b></div>`;
+      return `<div style="border:1px solid var(--border);border-radius:12px;padding:14px 16px">
+        <div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:${o.color};margin-bottom:10px">🌊 ${o.nm} · ${o.sel} convidados</div>
+        ${row('Aceitaram termo',o.aceit,'var(--g2)')}
+        ${row('Declinaram',o.recus,'var(--red)')}
+        ${row('Aguardando resposta',o.aguard,'var(--amber)')}
+        ${row('Origem interna',o.interno)}
+        ${row('Via representantes',o.reps,'var(--violet)')}
+      </div>`;}).join('')}
+    </div>
+    <div class="insight warn" style="margin-top:16px"><div class="ico">📉</div><div class="body"><b>${m.perdidos} médicos perdidos</b> — contatados há mais de 30 dias e sem resposta (nunca assinaram o termo), concentrados na 1ª onda. Candidatos a reengajamento ou baixa do funil.</div></div>
+    <div style="margin-top:16px">
     ${listSec(`✅ ${m.aceitos} aceitaram o projeto`,'muted',m.aceitosList,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.tag}</span></div>`)}
     ${listSec(`⚠️ ${m.declinados} declinaram`,'red',m.declinadosList,false,d=>`<div class="li red"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
-    ${listSec(`⏳ ${m.pendentes} aguardando resposta — ação pendente`,'amber',m.pendentesList,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
-    <div class="wave-sec">
-      <div class="wave-hd" onclick="this.classList.toggle('open')" style="background:var(--violet-light);color:var(--violet)">
-        <span>🌊 1ª ONDA · ${m.onda1Total} em prospecção (${m.onda1Interno} internos · ${m.onda1Reps} via reps)</span>
-        <span class="wave-chev">▶ ver ${m.onda1List.length} nomes</span>
-      </div>
-      <div class="wave-body">${m.onda1List.map(d=>`<div class="li muted"><span class="nm">${d.nm}</span><span class="tagx">${d.tag==='Interno'?'Interno':'Rep '+d.tag}</span></div>`).join('')}</div>
-    </div>
-    <div class="wave-sec">
-      <div class="wave-hd" style="background:var(--blue-light);color:var(--blue);cursor:default">
-        <span>🌊 2ª ONDA · ${m.onda2} médicos (base interna)</span>
-      </div>
-      <div style="font-size:12px;color:var(--ink3);padding:9px 4px 2px">Nova leva de ${m.onda2} médicos da base interna, em prospecção inicial. Nomes serão detalhados conforme avançam no funil.</div>
+    ${listSec(`⏳ ${m.pendentes} aguardando termo (enviado, sem assinatura)`,'amber',m.pendentesList,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
     </div>
   </div></div>`;
 }
@@ -743,11 +757,10 @@ function viewPacientes(){
           <div class="tl-body"><div class="tl-t">${s.t} <span class="tl-count">${s.n}</span></div><div class="tl-d">${s.d}</div></div>
         </div>`).join('')}
       </div></div></div>
-    <div class="panel"><div class="ph"><div><h3>📌 Casos em andamento</h3><div class="ph-sub">Cuida, aceitos e pendentes</div></div></div>
+    <div class="panel"><div class="ph"><div><h3>📌 Casos em andamento</h3><div class="ph-sub">os ${p.aceitos} pacientes convertidos</div></div></div>
       <div class="pb">
-        ${listSec(`🌱 ${p.iniciados} no Cannect Cuida (entregues · ${p.cuidaAtivo} ativo)`,'muted',p.cuidaList,true,d=>`<div class="li" style="background:var(--violet-light)"><span class="nm" style="color:var(--violet)">${d.nm}</span><span class="rs" style="color:var(--violet);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
-        ${listSec(`✅ ${p.aceitos} assinaram o termo`,'muted',p.convertidos,false,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="rs" style="color:var(--g2);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
-        ${listSec(`⏳ ${p.aguardando.length} aguardando termo`,'amber',p.aguardando,false,d=>`<div class="li amber"><span class="nm">${d.nm}</span><span class="rs">${d.rs}</span></div>`)}
+        ${listSec(`🌱 ${p.cuidaAtivo} ativos no Cannect Cuida (avaliação D0)`,'muted',p.cuidaList,true,d=>`<div class="li" style="background:var(--violet-light)"><span class="nm" style="color:var(--violet)">${d.nm}</span><span class="rs" style="color:var(--violet);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
+        ${listSec(`✅ ${p.aceitos} assinaram o termo`,'muted',p.convertidos,true,d=>`<div class="li" style="background:var(--g-soft)"><span class="nm" style="color:var(--g2)">${d.nm}</span><span class="rs" style="color:var(--g2);font-style:normal;font-weight:600">${d.rs}</span></div>`)}
       </div></div>
   </div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🎁 Doações Projeto Frasco</h3><div class="ph-sub">Protocolos de Dor cedidos (NMV zero) · ${p.doacoesFrascos} frascos</div></div>
@@ -756,13 +769,21 @@ function viewPacientes(){
       ${p.doacoes.map(d=>`<div class="li" style="background:var(--g-soft);margin-bottom:6px"><span class="nm" style="color:var(--ink2)">${d.nm}</span><span class="rs" style="color:var(--ink3);font-style:normal">${d.rs}</span><span class="tagx" style="background:var(--g-light);color:var(--g2)">${d.frascos} frascos</span></div>`).join('')}
       <div class="insight"><div class="ico">🎁</div><div class="body">Cada <b>Protocolo de Dor</b> equivale a <b>2 frascos doados</b> pelo projeto (NMV zero no B2C). Estes ${p.doacoesFrascos} frascos contam na meta de <span class="hl">Frascos doados</span> da Visão Geral.</div></div>
     </div></div>
-  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🩹 Escalas clínicas (Cuida)</h3><div class="ph-sub">o que será medido em cada paciente</div></div>
-    <span class="tag" style="background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-mid)">🔒 aguardando 1º check-in</span></div>
-    <div class="pb"><div class="scale-grid">
-      ${p.escalas.map(s=>`<div class="scale-card"><div class="scale-t">${s.t} <span class="lk">🔒</span></div>
-        <div class="scale-bar"></div><div class="scale-d">${s.d}</div></div>`).join('')}
-    </div>
-    <div class="insight" style="margin-top:16px"><div class="ico">📊</div><div class="body">Assim que o 1º paciente completar o <b>check-in do dia 6</b>, estes painéis ganham vida: evolução de dor, sono e PGIC vs. linha de base — o coração do white paper de RWE.</div></div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🩹 Escalas clínicas (Cuida)</h3><div class="ph-sub">avaliação basal D0 dos pacientes ativos</div></div>
+    <span class="tag" style="background:var(--g-light);color:var(--g2);border:1px solid var(--g-mid)">🩺 ${p.escalasClinicas.length} pacientes com D0</span></div>
+    <div class="pb">
+      ${p.escalasClinicas.map(e=>{const chip=(l,v,c)=>`<div style="text-align:center;flex:1"><div style="font-size:18px;font-weight:800;letter-spacing:-.5px;color:${c}">${v==null?'—':v}</div><div style="font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--ink3)">${l}</div></div>`;
+        return `<div style="border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;flex-wrap:wrap;gap:4px">
+          <div><span style="font-weight:800;font-size:13px">${e.nm}</span> <span style="font-size:11px;color:var(--ink3)">${e.med}</span></div>
+          <span class="tagx" style="background:var(--violet-light);color:var(--violet)">${e.contato}</span></div>
+        <div style="display:flex;gap:6px">${chip('Dor',e.dor,'var(--g2)')}${chip('Sono',e.sono,'var(--g2)')}${chip('Funcional',e.func,'var(--g2)')}${chip('Tol. THC',e.tol,'var(--ink2)')}</div>
+        ${e.ea?`<div style="margin-top:10px;font-size:11.5px;color:var(--amber);background:var(--amber-light);border-radius:7px;padding:6px 10px">⚠️ Efeito adverso: ${e.ea}</div>`:''}
+      </div>`;}).join('')}
+      <div style="font-size:11px;color:var(--ink3);margin-top:2px">Escalas de 0 (pior) a 10 (melhor). Valores basais (D0) — a evolução aparece após os check-ins D6 e D10.</div>
+      ${p.observacoes&&p.observacoes.length?`<div style="margin-top:16px"><div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:8px">📝 Observações</div>
+        ${p.observacoes.map(o=>`<div class="li" style="background:var(--g-soft);margin-bottom:6px"><span class="nm" style="color:var(--ink2)">${o.nm}</span><span class="rs" style="color:var(--ink3);font-style:normal">${o.txt}</span></div>`).join('')}</div>`:''}
+      <div class="insight" style="margin-top:16px"><div class="ico">📊</div><div class="body">Já temos <b>${p.escalasClinicas.length} avaliações basais (D0)</b> registradas. Quando os pacientes completarem os <b>check-ins D6 e D10</b>, comparamos a evolução de dor, sono e função vs. a linha de base — o coração do white paper de RWE.</div></div>
     </div></div>`;
 }
 
@@ -773,7 +794,7 @@ function viewB2C(state){
   const max=Math.max(vMai,vJun,vJul), fmt=v=>isF?v+" un.":brl(v), delta=pct(vJun-vMai,vMai);
   const prodMax=Math.max(...b.produtos.map(p=>p.un));
   return `<div class="page-head"><div class="page-ico b2c">🛒</div>
-    <div><h2>B2C — canal direto ao consumidor</h2><p>Vendas avulsas Foliumed · maio–junho 2026 · independente do projeto</p></div></div>
+    <div><h2>B2C — canal direto ao consumidor</h2><p>Vendas avulsas Foliumed · maio–julho 2026 · independente do projeto</p></div></div>
   <div class="panel" style="margin-bottom:16px"><div class="ph"><div><h3>💰 Valores de venda</h3><div class="ph-sub">acumulado · ${b.pedidos} pedidos</div></div></div>
     <div class="pb"><div class="nmv-row">
       <div class="nmv-box gmv"><div class="nl">${tip('Gross Merchandise Value — faturamento bruto, antes de descontos.','GMV')}</div><div class="nv">${brl(b.gmv)}</div><div class="ns">faturamento bruto</div></div>
@@ -784,7 +805,7 @@ function viewB2C(state){
     </div></div></div>
   <div class="hero-strip">
     <div class="hero"><div class="hero-lbl">📦 Frascos vendidos</div><div class="hero-val sm">${b.frascos}</div><div class="hero-sub">${b.pedidos} pedidos pagos</div></div>
-    <div class="hero" style="border-color:var(--amber-mid);background:var(--amber-light)"><div class="hero-lbl" style="color:var(--amber)">🛒 Carrinhos em aberto</div><div class="hero-val sm" style="color:var(--amber)">${b.carrinhos}</div><div class="hero-sub">oportunidades a converter</div></div>
+    <div class="hero"><div class="hero-lbl">📦 Itens no checkout</div><div class="hero-val sm">${b.carrinhoItens}</div><div class="hero-sub">vendas + doações (Recipe)</div></div>
     <div class="hero"><div class="hero-lbl">👨‍⚕️ Médicos únicos</div><div class="hero-val sm">${b.medicosUnicos}</div><div class="hero-sub">prescritores</div></div>
     <div class="hero"><div class="hero-lbl">🧑 Pacientes únicos</div><div class="hero-val sm">${b.pacientesUnicos}</div><div class="hero-sub">compradores</div></div>
   </div>
@@ -797,27 +818,27 @@ function viewB2C(state){
         <div class="mbar"><div class="mbar-l">Julho</div><div class="mbar-wrap"><div class="mbar-fill" style="width:${Math.max(vJul/max*100,8)}%;background:var(--g3)"><span>${fmt(vJul)}</span></div></div></div>
         <div style="margin-top:15px;display:flex;align-items:center;gap:10px"><span class="delta up" style="font-size:14px">▲ +${delta}%</span>
           <span style="font-size:11.5px;color:var(--ink3)">crescimento ${isF?'de volume':key.toUpperCase()} mai → jun</span></div>
-        <div class="insight"><div class="ico">⚡</div><div class="body">Junho foi o pico (${brl(b.mes.jun.nmv)} NMV). Julho ainda no início (até 07/07). O canal B2C acumula <b>${brl(b.nmv)}</b> líquidos.</div></div>
+        <div class="insight"><div class="ico">⚡</div><div class="body">Junho foi o pico (${brl(b.mes.jun.nmv)} NMV). Julho já soma ${brl(b.mes.jul.nmv)} (até 17/07). O canal B2C acumula <b>${brl(b.nmv)}</b> líquidos em ${b.pedidos} pedidos.</div></div>
       </div></div>
     <div class="panel"><div class="ph"><h3>🧪 Mix de produtos</h3><div class="ph-sub">por unidade · NMV</div></div><div class="pb">
       <div class="prod-list">${b.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.nmv)} NMV</span></div>
         <div class="prod-bg"><div class="prod-fill" style="width:${p.un/prodMax*100}%"><span>${pct(p.un,b.frascos)}%</span></div></div></div>`).join('')}</div>
-      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (56% das unidades). Destaque: <b>2 Protocolos de Dor</b> viraram <span class="hl">venda paga</span> — além dos 15 doados pelo projeto.</div></div>
+      <div class="insight"><div class="ico">🌅</div><div class="body">O <b>Full Spectrum 0,2%</b> segue dominante (${pct(9,b.frascos)}% das unidades vendidas). Destaque: <b>2 Protocolos de Dor</b> viraram <span class="hl">venda paga</span> — além dos ${DATA.pacientes.doacoesProtocolos} doados pelo projeto.</div></div>
     </div></div>
   </div>
-  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🛒 Carrinhos em aberto · por canal</h3><div class="ph-sub">${b.carrinhos} carrinhos · ${b.carrinhoItens} unidades · ${brl(b.carrinhoValor)} em potencial</div></div>
-    <span class="tag" style="background:var(--amber-light);color:var(--amber);border:1px solid var(--amber-mid)">oportunidades a converter</span></div>
+  <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>🛒 Composição do checkout B2C</h3><div class="ph-sub">${b.carrinhos} pedidos · ${b.carrinhoItens} itens · ${brl(b.carrinhoValor)} GMV bruto</div></div>
+    <span class="tag" style="background:var(--g-light);color:var(--g2);border:1px solid var(--g-mid)">vendas + doações</span></div>
     <div class="pb">
       ${(()=>{const cartCol=(t,badge,d)=>{const cm=Math.max(...d.produtos.map(x=>x.un));return `<div><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><div style="font-size:13px;font-weight:800;color:var(--ink);display:flex;align-items:center;gap:8px">${t} <span style="font-size:9.5px;font-weight:800;padding:2px 8px;border-radius:6px;background:${badge}">${d.itens} un</span></div><div style="font-size:12px;font-weight:700;color:var(--g2)">${brl(d.valor)}</div></div>
-        <div class="prod-list">${d.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.vl)}</span></div><div class="prod-bg"><div class="prod-fill" style="width:${p.un/cm*100}%;background:linear-gradient(90deg,var(--amber),#E0A93A)"><span>${p.un}</span></div></div></div>`).join('')}</div></div>`;};
-        return `<div class="cols-2" style="align-items:start">${cartCol('🛒 B2C · consumidor','var(--amber-light);color:var(--amber)',b.carrinhoB2C)}${cartCol('🏢 B2B · representante','var(--blue-light);color:var(--blue)',b.carrinhoB2B)}</div>`;})()}
-      <div class="insight warn"><div class="ico">💰</div><div class="body">São <b>${b.carrinhos} carrinhos abertos</b> (R$ ${b.carrinhoValor.toLocaleString("pt-BR")} em potencial): <span class="hl">${b.carrinhoB2C.itens} B2C</span> + ${b.carrinhoB2B.itens} B2B. O <b>1:1 CBD/THC</b> lidera a demanda represada no B2C — foco de recuperação.</div></div>
+        <div class="prod-list">${d.produtos.map(p=>`<div class="prod-row"><div class="prod-nm"><span>${p.nm}</span><span class="pv">${p.un} un · ${brl(p.vl)}</span></div><div class="prod-bg"><div class="prod-fill" style="width:${p.un/cm*100}%;background:linear-gradient(90deg,var(--g2),var(--g3))"><span>${p.un}</span></div></div></div>`).join('')}</div></div>`;};
+        return cartCol('🛒 Todos os pedidos B2C','var(--g-light);color:var(--g2)',b.carrinhoB2C);})()}
+      <div class="insight"><div class="ico">🎁</div><div class="body">Dos <b>${b.carrinhoItens} itens no checkout</b>, <span class="hl">25 são Protocolos de Dor doados</span> pelo projeto (NMV zero) e ${b.frascos} são vendas pagas. O <b>Full Spectrum 0,2%</b> lidera as vendas efetivas.</div></div>
     </div></div>
   <div class="panel span" style="margin-top:16px"><div class="ph"><div><h3>📦 Status dos pedidos B2C</h3><div class="ph-sub">estágio de cada pedido no fluxo Anvisa → entrega</div></div></div>
     <div class="pb"><div class="seg">
       ${(()=>{const smax=Math.max(...b.status.map(s=>s.n)),stot=b.status.reduce((a,s)=>a+s.n,0);return b.status.map(s=>`<div class="seg-row"><div class="seg-lbl" style="width:180px">${s.nm}</div><div class="seg-wrap"><div class="seg-bar" style="width:${s.n/smax*100}%;background:${s.color}"></div></div><div class="seg-n">${s.n}</div></div>`).join('');})()}
     </div>
-    <div class="insight"><div class="ico">🚚</div><div class="body">A esteira destravou: <span class="hl">13 pedidos em trânsito</span> e 1 entregue, de ${b.status.reduce((a,s)=>a+s.n,0)} totais. O gargalo da Anvisa diminuiu bastante vs. semanas anteriores.</div></div>
+    <div class="insight"><div class="ico">🚚</div><div class="body">A esteira segue fluindo: <span class="hl">11 pedidos em trânsito</span> e 3 já entregues, de ${b.status.reduce((a,s)=>a+s.n,0)} totais. O gargalo de documentos/Anvisa concentra 5 pedidos.</div></div>
     </div></div>
   <div class="cols-2" style="margin-top:16px">
     <div class="panel"><div class="ph"><div><h3>🗺️ Estado dos pacientes</h3><div class="ph-sub">UF dos ${b.pacientesUnicos} pacientes únicos</div></div></div>
@@ -849,7 +870,7 @@ function render(){
   <div class="header">
     <div class="header-l"><div class="logo-dot">🌿</div>
       <div><h1>Foliumed × Cannect</h1><div class="sub">Projeto Frasco &amp; B2C · Real World Evidence · Brasil 2026</div></div></div>
-    <div class="header-r"><div class="phase-pill"><span class="phase-dot"></span> MVP</div><div class="tag">Atualizado ${DATA.updated}</div></div>
+    <div class="header-r"><div class="tag">Atualizado ${DATA.updated}</div></div>
   </div>
   <div class="tabs">${TABS.map(t=>`<button class="tab ${state.tab===t.id?'active':''}" onclick="go('${t.id}')">${t.icon} ${t.lbl}${t.count!=null?`<span class="tcount">${t.count}</span>`:''}</button>`).join('')}</div>
   <div class="main">${body}${footer()}</div>`;
